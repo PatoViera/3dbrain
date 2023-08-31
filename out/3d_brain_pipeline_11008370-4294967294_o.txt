@@ -1,0 +1,2 @@
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+/home/pvier002/3dbrain

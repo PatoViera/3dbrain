@@ -1,0 +1,1 @@
+/scratch/slurmd/job11008370/slurm_script: line 30: activate: No such file or directory

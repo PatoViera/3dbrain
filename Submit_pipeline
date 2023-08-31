@@ -1,0 +1,43 @@
+#!/bin/bash
+#---Job's name in slurm system
+#SBATCH -J 3d_brain_pipeline
+
+#---Number of nodes used per job
+#SBATCH --nodes=1
+
+#---Number of tasks per cpu
+#SBATCH --ntasks=1
+
+#---Number of cpus per task(do not exceed 32 cpus)
+#SBATCH --cpus-per-task=16
+
+#---Account
+#SBATCH --account iacc_nbc
+
+#---Queue name
+#SBATCH --qos pq_nbc
+
+#---Partition
+#SBATCH -p IB_40C_512G
+# Outputs ----------------------------------------------------------------------------------------
+#---Error file
+#SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt
+
+#---Output file
+#SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt
+# ------------------------------------------------------------------------------------------------
+
+pwd; hostname; date
+set -e
+
+#============================== Shell script =====================================================
+###############################
+# Loading up the necessary encironment for the python script
+source activate /home/pvier002/miniconda3/envs/psb6351_env
+which python
+
+######################################
+# Running python script from the command line
+cd /home/pvier002/3dbrain
+pwd
+python3 /home/pvier002/3dbrain/run_pipeline.py 
