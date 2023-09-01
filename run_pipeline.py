@@ -14,9 +14,9 @@ def get_niftis(subject_id, data_dir):
     from bids.layout import BIDSLayout
     
     layout = BIDSLayout(data_dir)
-    t1s = [f.filename for f in layout.get(subject=subject_id, suffix='T1w', 
+    t1s = [f.path for f in layout.get(subject=subject_id, suffix='T1w', run='01',
                                           extension=['nii', 'nii.gz'])]
-    return t1s
+    return t1s[0]
 
 
 def get_rh(pial_list):
@@ -49,8 +49,7 @@ def main(dataset, output_dir, sub_ids, work_dir):
     Workflow to create stl file(s) for subject from BIDS dataset.
     """
     wf = pe.Workflow('3dbrain')
-    wf.base_dir = work_dir  # With a BIDS App, this will be somewhere
-                            # on the image, so...
+    wf.base_dir = work_dir  #Set the working directory somewhere on /scratch/nbc/
     wf.config['execution']['crashdump_dir'] = work_dir
     wf.config['execution']['crashfile_format'] = 'txt'
     
