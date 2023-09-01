@@ -1,0 +1,94 @@
+/home/pvier002/3dbrain
+n094.panther.net
+Thu Aug 31 21:30:20 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output-dir /scratch/nbc/pvier002/3dbrain/dset --sub-ids 193 --work-dir /scratch/nbc/pvier002/3dbrain
+230831-21:30:34,853 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230831-21:30:34,939 nipype.workflow INFO:
+	 Running in parallel.
+230831-21:30:39,256 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230831-21:30:39,289 nipype.workflow INFO:
+	 [Job 0] Cached (3dbrain.BIDSDataGrabber).
+230831-21:30:41,318 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230831-21:30:41,352 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230831-21:30:41,415 nipype.interface INFO:
+	 resume recon-all : recon-all -all -openmp 4 -subjid 193 -sd /scratch/nbc/pvier002/3dbrain/dset -nomotioncor -notalairach
+230831-21:30:41,417 nipype.interface INFO:
+	 resume recon-all : recon-all -all -openmp 4 -subjid 193 -sd /scratch/nbc/pvier002/3dbrain/dset -nomotioncor -notalairach
+230831-21:30:43,262 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230831-21:30:50,89 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 8.689771s.
+230831-21:30:50,96 nipype.workflow WARNING:
+	 [Node] Error on "3dbrain.reconall" (/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall)
+230831-21:30:51,272 nipype.workflow ERROR:
+	 Node reconall.a0 failed to run on host n094.panther.net.
+230831-21:30:51,273 nipype.workflow ERROR:
+	 Saving crash info to /scratch/nbc/pvier002/3dbrain/crash-20230831-213051-pvier002-reconall.a0-8293f194-bcf7-4bec-9961-d57d2d8505d3.txt
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 527, in run
+    result = self._run_interface(execute=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 645, in _run_interface
+    return self._run_command(execute)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 771, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node reconall.
+
+Cmdline:
+	recon-all -all -openmp 4 -subjid 193 -sd /scratch/nbc/pvier002/3dbrain/dset -nomotioncor -notalairach
+Stdout:
+	Subject Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+	Current Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+	INFO: SUBJECTS_DIR is /scratch/nbc/pvier002/3dbrain/dset
+	Actual FREESURFER_HOME /home/applications/freesurfer/7.1/freesurfer
+	-rw-rw-r-- 1 pvier002 hpc_nbc 35500 Aug 31 20:12 /scratch/nbc/pvier002/3dbrain/dset/193/scripts/recon-all.log
+	Linux n094.panther.net 3.10.0-1127.el7.x86_64 #1 SMP Tue Mar 31 23:36:51 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+	ERROR: it appears that recon-all is already running
+	for 193 based on the presence of /scratch/nbc/pvier002/3dbrain/dset/193/scripts/IsRunning.lh+rh. It could
+	also be that recon-all was running at one point but
+	died in an unexpected way. If it is the case that there
+	is a process running, you can kill it and start over or
+	just let it run. If the process has died, you should type:
+
+	 rm /scratch/nbc/pvier002/3dbrain/dset/193/scripts/IsRunning.lh+rh
+
+	and re-run. Or you can add -no-isrunning to the recon-all
+	command-line. The contents of this file are:
+	----------------------------------------------------------
+	------------------------------
+	SUBJECT 193
+	HEMI    lh rh
+	DATE Thu Aug 31 20:07:55 EDT 2023
+	USER pvier002
+	HOST v001
+	PROCESSID 4247 
+	PROCESSOR x86_64
+	OS Linux
+	Linux v001 3.10.0-1127.el7.x86_64 #1 SMP Tue Mar 31 23:36:51 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+	7.1.0 (freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b)
+	----------------------------------------------------------
+Stderr:
+	nu_correct: Command not found.
+Traceback:
+	RuntimeError: subprocess exited with code 1.
+
+230831-21:30:51,278 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230831-21:30:53,269 nipype.workflow INFO:
+	 ***********************************
+230831-21:30:53,269 nipype.workflow ERROR:
+	 could not run node: 3dbrain.reconall.a0
+230831-21:30:53,269 nipype.workflow INFO:
+	 crashfile: /scratch/nbc/pvier002/3dbrain/crash-20230831-213051-pvier002-reconall.a0-8293f194-bcf7-4bec-9961-d57d2d8505d3.txt
+230831-21:30:53,269 nipype.workflow INFO:
+	 ***********************************

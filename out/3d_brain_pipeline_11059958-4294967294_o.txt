@@ -1,0 +1,6 @@
+/home/pvier002/3dbrain
+n099.panther.net
+Thu Aug 31 21:25:46 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/dset --sub-ids 193 --work-dir /scratch/nbc/pvier002/3dbrain

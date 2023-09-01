@@ -1,0 +1,34 @@
+/home/pvier002/3dbrain
+n100.panther.net
+Thu Aug 31 21:35:54 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output-dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub-ids 193 --work-dir /scratch/nbc/pvier002/3dbrain
+230831-21:36:02,551 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230831-21:36:02,600 nipype.workflow INFO:
+	 Running in parallel.
+230831-21:36:03,276 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230831-21:36:03,350 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230831-21:36:03,365 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230831-21:36:05,281 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.BIDSDataGrabber
+230831-21:36:10,210 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 6.795495s.
+230831-21:36:11,284 nipype.workflow INFO:
+	 [Job 0] Completed (3dbrain.BIDSDataGrabber).
+230831-21:36:11,287 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230831-21:36:11,323 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230831-21:36:11,348 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230831-21:36:13,287 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
