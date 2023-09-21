@@ -1,0 +1,12 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 121, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 84, in main
+    conv_rh.inputs.in_file= op.join(output_dir, subj_iterable.outputs.subject_id, 'surf', 'rh.pial')
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/posixpath.py", line 90, in join
+    genericpath._check_arg_types('join', a, *p)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not '_Undefined'

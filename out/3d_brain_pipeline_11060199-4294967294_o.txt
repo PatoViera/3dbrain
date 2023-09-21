@@ -32,3 +32,18 @@ Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /s
 	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
                      Currently running:
                        * 3dbrain.reconall
+230901-01:24:27,191 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 13695.497535s.
+230901-01:24:28,880 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.reconall).
+230901-01:24:29,132 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230901-01:24:29,169 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.conv_rh" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/conv_rh".
+230901-01:24:29,171 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.conv_lh" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/conv_lh".
+230901-01:24:30,883 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.conv_lh
+                       * 3dbrain.conv_rh

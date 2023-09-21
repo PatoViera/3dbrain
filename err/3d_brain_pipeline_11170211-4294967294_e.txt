@@ -1,0 +1,35 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 129, in validate
+    value = Path(value)  # Use pathlib's validation
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 1042, in __new__
+    self = cls._from_parts(args, init=False)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 683, in _from_parts
+    drv, root, parts = self._parse_args(args)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 667, in _parse_args
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 127, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 100, in main
+    comb = pe.Node(MRIsCombine(out_file=out_file_template), name='comb')
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/freesurfer/base.py", line 129, in __init__
+    super(FSCommand, self).__init__(**inputs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 629, in __init__
+    super(CommandLine, self).__init__(**inputs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 202, in __init__
+    self.inputs.trait_set(**inputs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/has_traits.py", line 1520, in trait_set
+    setattr(self, name, value)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 330, in validate
+    value = super(File, self).validate(objekt, name, value, return_pathlike=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 131, in validate
+    self.error(objekt, name, str(value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/base_trait_handler.py", line 74, in error
+    raise TraitError(
+traits.trait_errors.TraitError: The 'out_file' trait of a MRIsCombineInputSpec instance must be a pathlike object or string representing a file, but a value of "['/scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1/193']" <class 'str'> was specified.

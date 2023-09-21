@@ -1,0 +1,48 @@
+/home/pvier002
+n100.panther.net
+Thu Sep 21 12:27:39 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 194 --work_dir /scratch/nbc/pvier002/3dbrain
+230921-12:28:00,688 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230921-12:28:00,761 nipype.workflow INFO:
+	 Running in parallel.
+230921-12:28:03,816 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230921-12:28:03,922 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230921-12:28:03,922 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230921-12:28:03,936 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230921-12:28:03,936 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230921-12:28:05,818 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.BIDSDataGrabber
+                       * 3dbrain.BIDSDataGrabber
+230921-12:28:07,284 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 3.30974s.
+230921-12:28:07,284 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 3.301305s.
+230921-12:28:07,818 nipype.workflow INFO:
+	 [Job 0] Completed (3dbrain.BIDSDataGrabber).
+230921-12:28:07,820 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.BIDSDataGrabber).
+230921-12:28:07,823 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230921-12:28:07,869 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230921-12:28:07,871 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall".
+230921-12:28:07,889 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230921-12:28:07,889 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230921-12:28:09,821 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.reconall
+                       * 3dbrain.reconall

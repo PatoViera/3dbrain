@@ -1,0 +1,49 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+exception calling callback for <Future at 0x7f3365bcdd30 state=finished raised FileNotFoundError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 527, in run
+    result = self._run_interface(execute=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 645, in _run_interface
+    return self._run_command(execute)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 722, in _run_command
+    result = self._interface.run(cwd=outdir, ignore_exception=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/freesurfer/base.py", line 149, in run
+    return super(FSCommand, self).run(**inputs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 388, in run
+    self._check_mandatory_inputs()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 275, in _check_mandatory_inputs
+    raise ValueError(msg)
+ValueError: MRIsCombine requires a value for input 'out_file'. For a list of required inputs, see MRIsCombine.help()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/process.py", line 239, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 70, in run_node
+    result["result"] = node.result
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 223, in result
+    return _load_resultfile(
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/utils.py", line 291, in load_resultfile
+    raise FileNotFoundError(results_file)
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/comb/result_comb.pklz
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 328, in _invoke_callbacks
+    callback(self)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 159, in _async_callback
+    result = args.result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/comb/result_comb.pklz
+slurmstepd: error: *** JOB 11145048 ON n091 CANCELLED AT 2023-09-15T13:00:25 ***
