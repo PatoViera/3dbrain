@@ -1,0 +1,118 @@
+/home/pvier002
+n099.panther.net
+Sun Sep 24 21:49:57 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 194 --work_dir /scratch/nbc/pvier002/3dbrain
+230924-21:50:01,667 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230924-21:50:01,709 nipype.workflow INFO:
+	 Running in parallel.
+230924-21:50:02,31 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230924-21:50:02,102 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230924-21:50:02,102 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230924-21:50:02,119 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230924-21:50:02,119 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230924-21:50:04,49 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.BIDSDataGrabber
+                       * 3dbrain.BIDSDataGrabber
+230924-21:50:06,793 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 4.623397s.
+230924-21:50:06,802 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 4.634751s.
+230924-21:50:08,40 nipype.workflow INFO:
+	 [Job 0] Completed (3dbrain.BIDSDataGrabber).
+230924-21:50:08,44 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.BIDSDataGrabber).
+230924-21:50:08,47 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230924-21:50:08,92 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230924-21:50:08,95 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall".
+230924-21:50:08,113 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230924-21:50:08,115 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230924-21:50:10,44 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.reconall
+                       * 3dbrain.reconall
+230925-01:03:56,760 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 11628.622646s.
+230925-01:03:58,687 nipype.workflow ERROR:
+	 Node reconall.a1 failed to run on host n099.panther.net.
+230925-01:03:58,691 nipype.workflow ERROR:
+	 Saving crash info to /scratch/nbc/pvier002/3dbrain/crash-20230925-010358-pvier002-reconall.a1-7f237b4b-bfec-4c30-81b4-a81f64850a99.txt
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 791, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473_unfinished.json' -> '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 542, in run
+    shutil.move(hashfile_unfinished, hashfile_unfinished.replace("_unfinished", ""))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 811, in move
+    copy_function(src, real_dst)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 435, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 264, in copyfile
+    with open(src, 'rb') as fsrc, open(dst, 'wb') as fdst:
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473_unfinished.json'
+
+230925-01:03:58,697 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230925-01:43:19,354 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 13991.239097s.
+230925-01:43:21,184 nipype.workflow ERROR:
+	 Node reconall.a0 failed to run on host n099.panther.net.
+230925-01:43:21,184 nipype.workflow ERROR:
+	 Saving crash info to /scratch/nbc/pvier002/3dbrain/crash-20230925-014321-pvier002-reconall.a0-4fb6f52a-756b-4001-8423-e253b6b98490.txt
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 791, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall/_0x29f1e00a7f1d98009eb7702953c5151c_unfinished.json' -> '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall/_0x29f1e00a7f1d98009eb7702953c5151c.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 542, in run
+    shutil.move(hashfile_unfinished, hashfile_unfinished.replace("_unfinished", ""))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 811, in move
+    copy_function(src, real_dst)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 435, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 264, in copyfile
+    with open(src, 'rb') as fsrc, open(dst, 'wb') as fdst:
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall/_0x29f1e00a7f1d98009eb7702953c5151c_unfinished.json'
+
+230925-01:43:21,190 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-01:43:23,175 nipype.workflow INFO:
+	 ***********************************
+230925-01:43:23,175 nipype.workflow ERROR:
+	 could not run node: 3dbrain.reconall.a1
+230925-01:43:23,175 nipype.workflow INFO:
+	 crashfile: /scratch/nbc/pvier002/3dbrain/crash-20230925-010358-pvier002-reconall.a1-7f237b4b-bfec-4c30-81b4-a81f64850a99.txt
+230925-01:43:23,175 nipype.workflow ERROR:
+	 could not run node: 3dbrain.reconall.a0
+230925-01:43:23,175 nipype.workflow INFO:
+	 crashfile: /scratch/nbc/pvier002/3dbrain/crash-20230925-014321-pvier002-reconall.a0-4fb6f52a-756b-4001-8423-e253b6b98490.txt
+230925-01:43:23,175 nipype.workflow INFO:
+	 ***********************************

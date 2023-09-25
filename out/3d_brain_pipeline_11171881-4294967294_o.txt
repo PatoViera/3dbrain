@@ -1,0 +1,95 @@
+/home/pvier002
+n099.panther.net
+Sun Sep 24 20:36:00 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 --work_dir /scratch/nbc/pvier002/3dbrain
+230924-20:36:09,117 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230924-20:36:09,460 nipype.workflow INFO:
+	 Running in parallel.
+230924-20:36:13,470 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230924-20:36:13,524 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.conv_rh" in "/scratch/nbc/pvier002/3dbrain/3dbrain/conv_rh".
+230924-20:36:13,526 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.conv_lh" in "/scratch/nbc/pvier002/3dbrain/3dbrain/conv_lh".
+230924-20:36:13,621 nipype.workflow INFO:
+	 [Node] Executing "conv_lh" <nipype.interfaces.freesurfer.utils.MRIsConvert>
+230924-20:36:13,621 nipype.workflow INFO:
+	 [Node] Executing "conv_rh" <nipype.interfaces.freesurfer.utils.MRIsConvert>
+230924-20:36:14,977 nipype.workflow INFO:
+	 [Node] Finished "conv_lh", elapsed time 1.309952s.
+230924-20:36:15,46 nipype.workflow INFO:
+	 [Node] Finished "conv_rh", elapsed time 1.375189s.
+230924-20:36:15,472 nipype.workflow INFO:
+	 [Job 0] Completed (3dbrain.conv_rh).
+230924-20:36:15,474 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.conv_lh).
+230924-20:36:15,477 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230924-20:36:15,523 nipype.workflow INFO:
+	 [Job 2] Cached (3dbrain.BIDSDataGrabber).
+230924-20:36:15,526 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.ToList" in "/scratch/nbc/pvier002/3dbrain/3dbrain/ToList".
+230924-20:36:15,567 nipype.workflow INFO:
+	 [Node] Executing "ToList" <nipype.interfaces.utility.wrappers.Function>
+230924-20:36:15,569 nipype.workflow INFO:
+	 [Node] Finished "ToList", elapsed time 0.000763s.
+230924-20:36:17,473 nipype.workflow INFO:
+	 [Job 3] Completed (3dbrain.ToList).
+230924-20:36:17,476 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230924-20:36:17,510 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.reconall".
+230924-20:36:17,513 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230924-20:36:17,514 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.comb" in "/scratch/nbc/pvier002/3dbrain/3dbrain/comb".
+230924-20:36:17,514 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.reconall".
+230924-20:36:17,536 nipype.workflow INFO:
+	 [Node] Executing "comb" <nipype.interfaces.freesurfer.utils.MRIsCombine>
+230924-20:36:17,543 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230924-20:36:17,624 nipype.interface INFO:
+	 resume recon-all : recon-all -all -openmp 4 -subjid 193 -sd /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 -nomotioncor -notalairach -nonuintensitycor -nonormalization -noskullstrip -nogcareg -nocanorm -nocareg -nocalabel -nonormalization2 -nomaskbfs -nosegmentation -nofill -notessellate -nosmooth1 -noinflate1 -noqsphere -nofix -nowhite -nosmooth2 -noinflate2 -nocurvHK -nocurvstats -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -nosegstats -nowmparc -nobalabels
+230924-20:36:17,628 nipype.interface INFO:
+	 resume recon-all : recon-all -all -openmp 4 -subjid 193 -sd /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 -nomotioncor -notalairach -nonuintensitycor -nonormalization -noskullstrip -nogcareg -nocanorm -nocareg -nocalabel -nonormalization2 -nomaskbfs -nosegmentation -nofill -notessellate -nosmooth1 -noinflate1 -noqsphere -nofix -nowhite -nosmooth2 -noinflate2 -nocurvHK -nocurvstats -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -nosegstats -nowmparc -nobalabels
+230924-20:36:19,477 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.comb
+                       * 3dbrain.reconall
+230924-20:36:20,363 nipype.workflow INFO:
+	 [Node] Finished "comb", elapsed time 2.825562s.
+230924-20:36:21,478 nipype.workflow INFO:
+	 [Job 5] Completed (3dbrain.comb).
+230924-20:36:21,480 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230924-20:36:21,525 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230924-20:36:21,528 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.datasink" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/datasink".
+230924-20:36:21,528 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230924-20:36:21,560 nipype.workflow INFO:
+	 [Node] Executing "datasink" <nipype.interfaces.io.DataSink>
+230924-20:36:21,575 nipype.workflow INFO:
+	 [Node] Finished "datasink", elapsed time 0.013968s.
+230924-20:36:23,480 nipype.workflow INFO:
+	 [Job 6] Completed (3dbrain.datasink).
+230924-20:36:23,483 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230924-20:36:23,719 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 6.174075s.
+230924-20:36:25,482 nipype.workflow INFO:
+	 [Job 4] Completed (3dbrain.reconall).
+230924-20:36:25,484 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+Finished pipeline with exit code 0
+Sun Sep 24 20:36:27 EDT 2023

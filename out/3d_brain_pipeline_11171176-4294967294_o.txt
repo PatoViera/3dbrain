@@ -1,0 +1,108 @@
+/home/pvier002
+n099.panther.net
+Thu Sep 21 21:57:12 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 194 --work_dir /scratch/nbc/pvier002/3dbrain
+230921-21:57:33,353 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230921-21:57:33,428 nipype.workflow INFO:
+	 Running in parallel.
+230921-21:57:35,124 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230921-21:57:35,148 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.BIDSDataGrabber".
+230921-21:57:35,163 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.BIDSDataGrabber".
+230921-21:57:35,166 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.BIDSDataGrabber".
+230921-21:57:35,169 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.BIDSDataGrabber".
+230921-21:57:35,198 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230921-21:57:35,198 nipype.workflow INFO:
+	 [Node] Setting-up "_BIDSDataGrabber0" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/BIDSDataGrabber/mapflow/_BIDSDataGrabber0".
+230921-21:57:35,201 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_BIDSDataGrabber0".
+230921-21:57:35,201 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_BIDSDataGrabber0".
+230921-21:57:35,234 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230921-21:57:35,235 nipype.workflow INFO:
+	 [Node] Executing "_BIDSDataGrabber0" <nipype.interfaces.utility.wrappers.Function>
+230921-21:57:37,130 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.BIDSDataGrabber
+                       * 3dbrain.BIDSDataGrabber
+230921-21:57:37,647 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 2.365048s.
+230921-21:57:37,647 nipype.workflow INFO:
+	 [Node] Finished "_BIDSDataGrabber0", elapsed time 2.365617s.
+230921-21:57:39,129 nipype.workflow INFO:
+	 [Job 0] Completed (3dbrain.BIDSDataGrabber).
+230921-21:57:39,131 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.BIDSDataGrabber).
+230921-21:57:39,134 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230921-21:57:39,180 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall".
+230921-21:57:39,185 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230921-21:57:39,188 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.datasink" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/datasink".
+230921-21:57:39,190 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230921-21:57:39,210 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230921-21:57:39,228 nipype.workflow INFO:
+	 [Node] Executing "datasink" <nipype.interfaces.io.DataSink>
+230921-21:57:39,231 nipype.workflow INFO:
+	 [Node] Finished "datasink", elapsed time 0.001623s.
+230921-21:57:41,131 nipype.workflow INFO:
+	 [Job 3] Completed (3dbrain.datasink).
+230921-21:57:41,136 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 2 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230921-21:57:41,168 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.reconall" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall".
+230921-21:57:41,193 nipype.workflow INFO:
+	 [Node] Executing "reconall" <nipype.interfaces.freesurfer.preprocess.ReconAll>
+230921-21:57:43,134 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.reconall
+                       * 3dbrain.reconall
+230922-01:10:54,923 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 11593.70535s.
+230922-01:10:55,816 nipype.workflow INFO:
+	 [Job 4] Completed (3dbrain.reconall).
+230922-01:10:55,835 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230922-01:10:55,915 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230922-01:10:55,919 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.datasink" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/datasink".
+230922-01:10:55,920 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230922-01:10:55,951 nipype.workflow INFO:
+	 [Node] Executing "datasink" <nipype.interfaces.io.DataSink>
+230922-01:10:55,956 nipype.workflow INFO:
+	 [Node] Finished "datasink", elapsed time 0.001803s.
+230922-01:10:57,818 nipype.workflow INFO:
+	 [Job 5] Completed (3dbrain.datasink).
+230922-01:10:57,821 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 453.24/453.44, Free processors: 1/2.
+                     Currently running:
+                       * 3dbrain.reconall
+230922-01:52:24,259 nipype.workflow INFO:
+	 [Node] Finished "reconall", elapsed time 14085.046892s.
+230922-01:52:24,490 nipype.workflow INFO:
+	 [Job 2] Completed (3dbrain.reconall).
+230922-01:52:24,493 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+Finished pipeline with exit code 0
+Fri Sep 22 01:52:27 EDT 2023

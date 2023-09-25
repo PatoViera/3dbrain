@@ -1,0 +1,12 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 137, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 92, in main
+    wf.connect(reconall, 'pial', pial_grabber_rh, 'pial_list')
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/workflows.py", line 161, in connect
+    self._check_nodes(newnodes)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/workflows.py", line 769, in _check_nodes
+    raise IOError('Duplicate node name "%s" found.' % node.name)
+OSError: Duplicate node name "pial_grabber_lh" found.

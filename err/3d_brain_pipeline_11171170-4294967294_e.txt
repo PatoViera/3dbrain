@@ -1,0 +1,161 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+exception calling callback for <Future at 0x7f1f32521b20 state=finished raised FileNotFoundError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 129, in validate
+    value = Path(value)  # Use pathlib's validation
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 1042, in __new__
+    self = cls._from_parts(args, init=False)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 683, in _from_parts
+    drv, root, parts = self._parse_args(args)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 667, in _parse_args
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 497, in run
+    self._get_hashval()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 548, in _get_hashval
+    self._get_inputs()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 619, in _get_inputs
+    self.set_input(key, deepcopy(output_value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 312, in set_input
+    setattr(self.inputs, parameter, deepcopy(val))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 424, in validate
+    value = super(MultiObject, self).validate(objekt, name, newvalue)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_types.py", line 2699, in validate
+    return TraitListObject(self, object, name, value)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 582, in __init__
+    super().__init__(
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 213, in __init__
+    super().__init__(self.item_validator(item) for item in iterable)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 213, in <genexpr>
+    super().__init__(self.item_validator(item) for item in iterable)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 865, in _item_validator
+    return trait_validator(object, self.name, value)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 330, in validate
+    value = super(File, self).validate(objekt, name, value, return_pathlike=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 131, in validate
+    self.error(objekt, name, str(value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/base_trait_handler.py", line 74, in error
+    raise TraitError(
+traits.trait_errors.TraitError: Each element of the 'T1_files' trait of a ReconAllInputSpec instance must be a pathlike object or string representing an existing file, but a value of "['/scratch/nbc/pvier002/3dbrain/dset/sub-193/anat/sub-193_run-01_T1w.nii.gz']" <class 'str'> was specified.
+
+Error setting node input:
+Node: reconall
+input: T1_files
+results_file: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/BIDSDataGrabber/result_BIDSDataGrabber.pklz
+value: [['/scratch/nbc/pvier002/3dbrain/dset/sub-193/anat/sub-193_run-01_T1w.nii.gz']]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/process.py", line 239, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 70, in run_node
+    result["result"] = node.result
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 223, in result
+    return _load_resultfile(
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/utils.py", line 291, in load_resultfile
+    raise FileNotFoundError(results_file)
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall/result_reconall.pklz
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 328, in _invoke_callbacks
+    callback(self)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 159, in _async_callback
+    result = args.result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/reconall/result_reconall.pklz
+exception calling callback for <Future at 0x7f1f32521dc0 state=finished raised FileNotFoundError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 129, in validate
+    value = Path(value)  # Use pathlib's validation
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 1042, in __new__
+    self = cls._from_parts(args, init=False)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 683, in _from_parts
+    drv, root, parts = self._parse_args(args)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/pathlib.py", line 667, in _parse_args
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 497, in run
+    self._get_hashval()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 548, in _get_hashval
+    self._get_inputs()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 619, in _get_inputs
+    self.set_input(key, deepcopy(output_value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 312, in set_input
+    setattr(self.inputs, parameter, deepcopy(val))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 424, in validate
+    value = super(MultiObject, self).validate(objekt, name, newvalue)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_types.py", line 2699, in validate
+    return TraitListObject(self, object, name, value)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 582, in __init__
+    super().__init__(
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 213, in __init__
+    super().__init__(self.item_validator(item) for item in iterable)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 213, in <genexpr>
+    super().__init__(self.item_validator(item) for item in iterable)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/trait_list_object.py", line 865, in _item_validator
+    return trait_validator(object, self.name, value)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 330, in validate
+    value = super(File, self).validate(objekt, name, value, return_pathlike=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 131, in validate
+    self.error(objekt, name, str(value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/base_trait_handler.py", line 74, in error
+    raise TraitError(
+traits.trait_errors.TraitError: Each element of the 'T1_files' trait of a ReconAllInputSpec instance must be a pathlike object or string representing an existing file, but a value of "['/scratch/nbc/pvier002/3dbrain/dset/sub-194/anat/sub-194_run-01_T1w.nii.gz']" <class 'str'> was specified.
+
+Error setting node input:
+Node: reconall
+input: T1_files
+results_file: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/BIDSDataGrabber/result_BIDSDataGrabber.pklz
+value: [['/scratch/nbc/pvier002/3dbrain/dset/sub-194/anat/sub-194_run-01_T1w.nii.gz']]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/process.py", line 239, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 70, in run_node
+    result["result"] = node.result
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 223, in result
+    return _load_resultfile(
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/utils.py", line 291, in load_resultfile
+    raise FileNotFoundError(results_file)
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/result_reconall.pklz
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 328, in _invoke_callbacks
+    callback(self)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 159, in _async_callback
+    result = args.result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+FileNotFoundError: /scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/result_reconall.pklz
+slurmstepd: error: *** JOB 11171170 ON n100 CANCELLED AT 2023-09-21T21:09:07 ***

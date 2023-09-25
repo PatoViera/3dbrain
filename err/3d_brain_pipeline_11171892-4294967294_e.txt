@@ -1,0 +1,14 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 129, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 88, in main
+    conv_rh.inputs.in_file = rh_pial_path
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 330, in validate
+    value = super(File, self).validate(objekt, name, value, return_pathlike=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/traits_extension.py", line 135, in validate
+    self.error(objekt, name, str(value))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/traits/base_trait_handler.py", line 74, in error
+    raise TraitError(
+traits.trait_errors.TraitError: The 'in_file' trait of a MRIsConvertInputSpec instance must be a pathlike object or string representing an existing file, but a value of '/scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1/198/surf/rh.pial' <class 'str'> was specified.

@@ -1,0 +1,35 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+RuntimeError: Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 791, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473_unfinished.json' -> '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 542, in run
+    shutil.move(hashfile_unfinished, hashfile_unfinished.replace("_unfinished", ""))
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 811, in move
+    copy_function(src, real_dst)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 435, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/shutil.py", line 264, in copyfile
+    with open(src, 'rb') as fsrc, open(dst, 'wb') as fdst:
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/reconall/_0x85575bafb87bebe2e543803559ba9473_unfinished.json'
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 137, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 126, in main
+    wf.run(plugin='MultiProc', plugin_args={'n_procs': 2, 'overwrite': True})
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/workflows.py", line 638, in run
+    runner.run(execgraph, updatehash=updatehash, config=self.config)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/base.py", line 224, in run
+    raise error from cause
+RuntimeError: 2 raised. Re-raising first.
