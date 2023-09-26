@@ -1,0 +1,125 @@
+/home/pvier002
+n090.panther.net
+Mon Sep 25 21:55:56 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 194 --work_dir /scratch/nbc/pvier002/3dbrain
+230925-21:56:00,94 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230925-21:56:00,120 nipype.workflow INFO:
+	 Running in parallel.
+230925-21:56:00,299 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:00,317 nipype.workflow INFO:
+	 [Job 0] Cached (3dbrain.BIDSDataGrabber).
+230925-21:56:00,332 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.create_file_path" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/create_file_path".
+230925-21:56:00,357 nipype.workflow INFO:
+	 [Node] Executing "create_file_path" <nipype.interfaces.utility.wrappers.Function>
+230925-21:56:00,407 nipype.workflow INFO:
+	 [Node] Finished "create_file_path", elapsed time 0.001123s.
+230925-21:56:02,303 nipype.workflow INFO:
+	 [Job 1] Completed (3dbrain.create_file_path).
+230925-21:56:02,307 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:02,365 nipype.workflow INFO:
+	 [Job 2] Cached (3dbrain.BIDSDataGrabber).
+230925-21:56:02,371 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.create_file_path" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/create_file_path".
+230925-21:56:02,395 nipype.workflow INFO:
+	 [Node] Executing "create_file_path" <nipype.interfaces.utility.wrappers.Function>
+230925-21:56:02,450 nipype.workflow INFO:
+	 [Node] Finished "create_file_path", elapsed time 0.001038s.
+230925-21:56:04,304 nipype.workflow INFO:
+	 [Job 3] Completed (3dbrain.create_file_path).
+230925-21:56:04,307 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:04,339 nipype.workflow INFO:
+	 [Job 4] Cached (3dbrain.reconall).
+230925-21:56:04,858 nipype.workflow INFO:
+	 [Job 5] Cached (3dbrain.reconall).
+230925-21:56:06,306 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:06,344 nipype.workflow INFO:
+	 [Job 6] Cached (3dbrain.pial_grabber_lh).
+230925-21:56:06,355 nipype.workflow INFO:
+	 [Job 7] Cached (3dbrain.pial_grabber_rh).
+230925-21:56:08,346 nipype.workflow INFO:
+	 [Job 8] Cached (3dbrain.pial_grabber_lh).
+230925-21:56:08,357 nipype.workflow INFO:
+	 [Job 9] Cached (3dbrain.pial_grabber_rh).
+230925-21:56:10,341 nipype.workflow INFO:
+	 [Job 10] Cached (3dbrain.conv_lh).
+230925-21:56:10,346 nipype.workflow INFO:
+	 [Job 11] Cached (3dbrain.conv_rh).
+230925-21:56:12,313 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:12,343 nipype.workflow INFO:
+	 [Job 12] Cached (3dbrain.conv_lh).
+230925-21:56:12,347 nipype.workflow INFO:
+	 [Job 13] Cached (3dbrain.conv_rh).
+230925-21:56:14,315 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:14,348 nipype.workflow INFO:
+	 [Job 14] Cached (3dbrain.ToList).
+230925-21:56:14,354 nipype.workflow INFO:
+	 [Job 15] Cached (3dbrain.ToList).
+230925-21:56:16,353 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.comb".
+230925-21:56:16,358 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.comb" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/comb".
+230925-21:56:16,359 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.comb".
+230925-21:56:16,363 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.comb".
+230925-21:56:16,365 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.comb" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/comb".
+230925-21:56:16,367 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.comb".
+230925-21:56:16,389 nipype.workflow INFO:
+	 [Node] Executing "comb" <nipype.interfaces.freesurfer.utils.MRIsCombine>
+230925-21:56:16,393 nipype.workflow INFO:
+	 [Node] Executing "comb" <nipype.interfaces.freesurfer.utils.MRIsCombine>
+230925-21:56:18,320 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 453.04/453.44, Free processors: 0/2.
+                     Currently running:
+                       * 3dbrain.comb
+                       * 3dbrain.comb
+230925-21:56:18,791 nipype.workflow INFO:
+	 [Node] Finished "comb", elapsed time 2.396263s.
+230925-21:56:20,256 nipype.workflow INFO:
+	 [Node] Finished "comb", elapsed time 3.864691s.
+230925-21:56:20,321 nipype.workflow INFO:
+	 [Job 16] Completed (3dbrain.comb).
+230925-21:56:20,322 nipype.workflow INFO:
+	 [Job 17] Completed (3dbrain.comb).
+230925-21:56:20,325 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:56:20,368 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230925-21:56:20,372 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.datasink" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/datasink".
+230925-21:56:20,373 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230925-21:56:20,381 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230925-21:56:20,384 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.datasink" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/datasink".
+230925-21:56:20,385 nipype.workflow INFO:
+	 [Node] Outdated cache found for "3dbrain.datasink".
+230925-21:56:20,404 nipype.workflow INFO:
+	 [Node] Executing "datasink" <nipype.interfaces.io.DataSink>
+230925-21:56:20,413 nipype.workflow INFO:
+	 [Node] Executing "datasink" <nipype.interfaces.io.DataSink>
+230925-21:56:20,417 nipype.workflow INFO:
+	 [Node] Finished "datasink", elapsed time 0.011582s.
+230925-21:56:20,420 nipype.workflow INFO:
+	 [Node] Finished "datasink", elapsed time 0.005489s.
+230925-21:56:22,323 nipype.workflow INFO:
+	 [Job 18] Completed (3dbrain.datasink).
+230925-21:56:22,340 nipype.workflow INFO:
+	 [Job 19] Completed (3dbrain.datasink).
+230925-21:56:22,342 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+Finished pipeline with exit code 0
+Mon Sep 25 21:56:24 EDT 2023

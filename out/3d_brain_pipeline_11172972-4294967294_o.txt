@@ -1,0 +1,132 @@
+/home/pvier002
+n090.panther.net
+Mon Sep 25 21:53:20 EDT 2023
+/home/pvier002/miniconda3/envs/psb6351_env/bin/python
+
+Commandline: python3 /home/pvier002/3dbrain/run_3dbrain_pipeline.py --dataset /scratch/nbc/pvier002/3dbrain/dset --output_dir /scratch/nbc/pvier002/3dbrain/derivatives/freesurfer-7.1 --sub_ids 193 194 --work_dir /scratch/nbc/pvier002/3dbrain
+230925-21:53:24,666 nipype.workflow INFO:
+	 Workflow 3dbrain settings: ['check', 'execution', 'logging', 'monitoring']
+230925-21:53:24,693 nipype.workflow INFO:
+	 Running in parallel.
+230925-21:53:24,903 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:24,921 nipype.workflow INFO:
+	 [Job 0] Cached (3dbrain.BIDSDataGrabber).
+230925-21:53:24,936 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.create_file_path" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/create_file_path".
+230925-21:53:24,964 nipype.workflow INFO:
+	 [Node] Executing "create_file_path" <nipype.interfaces.utility.wrappers.Function>
+230925-21:53:25,22 nipype.workflow INFO:
+	 [Node] Finished "create_file_path", elapsed time 0.000415s.
+230925-21:53:25,22 nipype.workflow WARNING:
+	 Storing result file without outputs
+230925-21:53:25,27 nipype.workflow WARNING:
+	 [Node] Error on "3dbrain.create_file_path" (/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_193/create_file_path)
+230925-21:53:26,910 nipype.workflow ERROR:
+	 Node create_file_path.a0 failed to run on host n090.panther.net.
+230925-21:53:26,911 nipype.workflow ERROR:
+	 Saving crash info to /scratch/nbc/pvier002/3dbrain/crash-20230925-215326-pvier002-create_file_path.a0-7fe7b658-dd81-445c-a1c0-f074b0387783.txt
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 527, in run
+    result = self._run_interface(execute=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 645, in _run_interface
+    return self._run_command(execute)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 771, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node create_file_path.
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 397, in run
+	    runtime = self._run_interface(runtime)
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/utility/wrappers.py", line 142, in _run_interface
+	    out = function_handle(**args)
+	  File "<string>", line 9, in create_subject_file_path
+	NameError: name 'os' is not defined
+
+
+230925-21:53:26,916 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:26,973 nipype.workflow INFO:
+	 [Job 2] Cached (3dbrain.BIDSDataGrabber).
+230925-21:53:26,979 nipype.workflow INFO:
+	 [Node] Setting-up "3dbrain.create_file_path" in "/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/create_file_path".
+230925-21:53:27,7 nipype.workflow INFO:
+	 [Node] Executing "create_file_path" <nipype.interfaces.utility.wrappers.Function>
+230925-21:53:27,65 nipype.workflow INFO:
+	 [Node] Finished "create_file_path", elapsed time 0.000581s.
+230925-21:53:27,65 nipype.workflow WARNING:
+	 Storing result file without outputs
+230925-21:53:27,70 nipype.workflow WARNING:
+	 [Node] Error on "3dbrain.create_file_path" (/scratch/nbc/pvier002/3dbrain/3dbrain/_subject_id_194/create_file_path)
+230925-21:53:28,909 nipype.workflow ERROR:
+	 Node create_file_path.a1 failed to run on host n090.panther.net.
+230925-21:53:28,910 nipype.workflow ERROR:
+	 Saving crash info to /scratch/nbc/pvier002/3dbrain/crash-20230925-215328-pvier002-create_file_path.a1-3d198a76-0e33-459a-a0f2-5dda4cb67028.txt
+Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 527, in run
+    result = self._run_interface(execute=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 645, in _run_interface
+    return self._run_command(execute)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 771, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node create_file_path.
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 397, in run
+	    runtime = self._run_interface(runtime)
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/utility/wrappers.py", line 142, in _run_interface
+	    out = function_handle(**args)
+	  File "<string>", line 9, in create_subject_file_path
+	NameError: name 'os' is not defined
+
+
+230925-21:53:28,915 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:28,945 nipype.workflow INFO:
+	 [Job 4] Cached (3dbrain.reconall).
+230925-21:53:28,949 nipype.workflow INFO:
+	 [Job 5] Cached (3dbrain.reconall).
+230925-21:53:30,911 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:30,948 nipype.workflow INFO:
+	 [Job 6] Cached (3dbrain.pial_grabber_lh).
+230925-21:53:30,959 nipype.workflow INFO:
+	 [Job 7] Cached (3dbrain.pial_grabber_rh).
+230925-21:53:32,950 nipype.workflow INFO:
+	 [Job 8] Cached (3dbrain.pial_grabber_lh).
+230925-21:53:32,961 nipype.workflow INFO:
+	 [Job 9] Cached (3dbrain.pial_grabber_rh).
+230925-21:53:34,945 nipype.workflow INFO:
+	 [Job 10] Cached (3dbrain.conv_lh).
+230925-21:53:34,950 nipype.workflow INFO:
+	 [Job 11] Cached (3dbrain.conv_rh).
+230925-21:53:36,917 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:36,947 nipype.workflow INFO:
+	 [Job 12] Cached (3dbrain.conv_lh).
+230925-21:53:36,952 nipype.workflow INFO:
+	 [Job 13] Cached (3dbrain.conv_rh).
+230925-21:53:38,919 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 453.44/453.44, Free processors: 2/2.
+230925-21:53:38,953 nipype.workflow INFO:
+	 [Job 14] Cached (3dbrain.ToList).
+230925-21:53:38,960 nipype.workflow INFO:
+	 [Job 15] Cached (3dbrain.ToList).
+230925-21:53:40,919 nipype.workflow INFO:
+	 ***********************************
+230925-21:53:40,919 nipype.workflow ERROR:
+	 could not run node: 3dbrain.create_file_path.a0
+230925-21:53:40,919 nipype.workflow INFO:
+	 crashfile: /scratch/nbc/pvier002/3dbrain/crash-20230925-215326-pvier002-create_file_path.a0-7fe7b658-dd81-445c-a1c0-f074b0387783.txt
+230925-21:53:40,919 nipype.workflow ERROR:
+	 could not run node: 3dbrain.create_file_path.a1
+230925-21:53:40,919 nipype.workflow INFO:
+	 crashfile: /scratch/nbc/pvier002/3dbrain/crash-20230925-215328-pvier002-create_file_path.a1-3d198a76-0e33-459a-a0f2-5dda4cb67028.txt
+230925-21:53:40,920 nipype.workflow INFO:
+	 ***********************************

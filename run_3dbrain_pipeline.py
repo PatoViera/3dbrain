@@ -45,6 +45,20 @@ def to_list(f1, f2):
     """
     return [f1, f2]
 
+def create_subject_file_path(subject_id, output_dir):
+    """
+    Function to generate a file path with subject id in the file name.
+    """
+    import os
+
+    # Define the file name pattern with subject id
+    file_name = f'sub-{subject_id}_combined.stl'
+
+    # Join the file name with the output directory to create the full file path
+    file_path = os.path.join(output_dir, subject_id, 'surf', file_name)
+
+    return file_path
+
 def main(dataset, output_dir, sub_ids, work_dir):
     """
     Workflow to create stl file(s) for subject from BIDS dataset.
@@ -107,11 +121,19 @@ def main(dataset, output_dir, sub_ids, work_dir):
     wf.connect(conv_lh, 'converted', tolist, 'f1')
     wf.connect(conv_rh, 'converted', tolist, 'f2')
     
-    for sub_id in sub_ids:
-        out_file_template = os.path.join(output_dir, sub_id, 'surf', f'sub-{sub_id}_combined.stl')
+    # Making the "out_file" pathways fro each subject 
+    create_file_path = pe.Node(Function(function=create_subject_file_path,
+                                        input_names=['subject_id', 'output_dir'],
+                                        output_names=['file_path']),
+                                name='create_file_path')
+    create_file_path.inputs.output_dir = output_dir
+
+    wf.connect(subj_iterable, 'subject_id', create_file_path, 'subject_id')
+
     # Combine the two GM surface files into a brain.
-    comb = pe.Node(MRIsCombine(out_file=out_file_template), name='comb')
+    comb = pe.Node(MRIsCombine(), name='comb')
     wf.connect(tolist, 'lst', comb, 'in_files')
+    wf.connect(create_file_path, 'file_path', comb, 'out_file')
     
     # Save the relevant data into an output directory
     datasink = pe.Node(nio.DataSink(), name='datasink')

@@ -1,0 +1,36 @@
+WARNING: $PATH does not agree with $PATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/bin/ /home/applications/spack/applications/gcc-8.2.0/miniconda3-4.5.11-oqs2mbgv3mmo3dll2f2rbxt4plfgyqzv/bin /bin/
+RuntimeError: Traceback (most recent call last):
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 527, in run
+    result = self._run_interface(execute=True)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 645, in _run_interface
+    return self._run_command(execute)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 771, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node create_file_path.
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 397, in run
+	    runtime = self._run_interface(runtime)
+	  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/interfaces/utility/wrappers.py", line 142, in _run_interface
+	    out = function_handle(**args)
+	  File "<string>", line 9, in create_subject_file_path
+	NameError: name 'os' is not defined
+
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 157, in <module>
+    main(args.dataset, args.output_dir, args.sub_ids, args.work_dir)
+  File "/home/pvier002/3dbrain/run_3dbrain_pipeline.py", line 146, in main
+    wf.run(plugin='MultiProc', plugin_args={'n_procs': 2, 'overwrite': True})
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/engine/workflows.py", line 638, in run
+    runner.run(execgraph, updatehash=updatehash, config=self.config)
+  File "/home/pvier002/miniconda3/envs/psb6351_env/lib/python3.8/site-packages/nipype/pipeline/plugins/base.py", line 224, in run
+    raise error from cause
+RuntimeError: 2 raised. Re-raising first.
