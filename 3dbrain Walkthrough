@@ -1,0 +1,137 @@
+# This is a walkthrough on how to use the 3dbrain pipeline
+# The purpose of this pipeline is to have a finalized ".stl" file which can be put into a 
+# 3dprinter software (i.e. UltiMaker Cura) and print out a copy of the participant's brain. 
+
+# In order to complete the pipeline a couple of other softwares need to be downloaded into a local computer 
+# (either your own personal computer or one of the lab computers).
+# The software needed are: 
+#     - UltiMaker Cura: This is the 3D printer software that is needed to actually send the printing job to 
+#        the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
+#     - MeshLab: This software is used to simplify the 3D models of the brain so that they are suitable for
+#        3D printing. The software can be downloaded here: https://www.meshlab.net/#download
+
+# There are 2 main files that will be used in the pipeline.
+#  - run_3dbrain_pipeline: This is the script that will actually run the pipeline to take a participant's 
+#    T1 weighted image (T1w), then run the participants T1w through Freesurfer's recon-all process, convert the 
+#    2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then we 
+#    combine the 2 hemispheric ".stl" files into a single ".stl" (bh.stl) that represents the participants entire
+#    cortical surface.
+#    There should be no need to edit this file, however if there is an issue with the script please contact 
+#    Patricio Viera Perez (pvier002@fiu.edu)
+#  - submit_3dbrain_pipeline: This is the script that will be submitted to the SLURM scheduler. This script calls in the
+#    "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on the HPC. Thus we can run multiple
+#    participants at a time, making the overall processing time shorter.
+
+############## 3d Brain Pipeline #######################################
+Step 1. Fork the 3dbrain repository on Github
+          - Go to https://github.com/PatoViera/3dbrain and make a fork of the 3dbrain repository into your own account
+Step 2. Log in to FIU's HPC.
+          - Either through the visualization node (https://hpcgui.fiu.edu/pun/sys/dashboard) or through SSH
+          - Make sure to use your FIU student username (ex. pvier002)
+Step 3. Clone your forked Github repository into the HPC
+          - In the command terminal navigate to a desired directory. For example, it can be your home directory ("home/[username]")
+            or a project specific directory. 
+          - You can use the command "cd" to change directories within the terminal. For example, typing "cd /home/[username]" into the
+            comman terminal will take you to your home directory. Make sure to replace [username] with your FIU username
+          - Once you are within your desired directory, in the command terminal type 
+            "git clone git@github.com:[GitHub_username]/3dbrain.git" replacing [username] with your GitHub account username
+          - You can check to see if the repositroy was cloned correctly if a new folder "3dbrain" was created within the desired directory, 
+            navigating inside the "3dbrain" folder, then in the command terminal type "git status". It should say something like
+            "# On branch master nothing to commit, working directory clean"
+Step 4. Load up SLRUM module 
+          - On the command terminal, type in "module load slurm" This should load up the SLURM module for your current session. This
+            is what will allow you to submit the script "submit_3dbrain_pipeline" to the SLURM scheduler. 
+Step 5. Prepare the "submit_3dbrain_pipeline" script
+          - Open the "submit_3dbrain_pipeline" script either through a text editor like "Emacs Client" on the visualization node 
+            or by typing "nano" on the command line.
+          - You will need to specify a couple of things in this script based on the project that you are working on.
+            - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Path to where the error files for the script 
+            (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder
+            - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Path to where the output files for the script 
+            (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder 
+            - WORK_DIR="${SCRATCH_DIR}/pvier002/3dbrain" # Directory within the NBC lab scratch folder that stores all temporary files from
+            the 3dbrain pipeline. Change this to reflect your own scratch folder or a project specific scratch folder. 
+            - DATASET="${SCRATCH_DIR}/pvier002/3dbrain/dset" # Path to where the BIDS dataset is located - folder must include 
+            the "dataset_description.json file" - Does not have to be within the scratch folder
+            - OUT_DIR="${SCRATCH_DIR}/pvier002/3dbrain/derivatives/freesurfer-7.1" # Path to where the output of the pipeline processes
+            will be stored - typically a derivatives folder within a project specific directory - Does not have to be within the scratch folder
+            - CODE_DIR="/home/pvier002/3dbrain" # Path to where a copy of "run_3dbrain_pipeline.py" & "submit_3dbrain_pipeline" will 
+            be stored - Typically within the repository that you cloned in Step 3
+            - SUB_IDS="193 194" # List of participants that need to be run through the 3dbrain pipeline
+            - Once you have edited the "submit_3dbrain_pipeline" script to include the correct infromation for your project make sure
+              that you you saved the changes to the script. 
+              - Nano: If you're in the nano text editor, typically:
+                - Press Ctrl + O to write the file (save).
+                - Press Enter to confirm the filename.
+                - Press Ctrl + X to exit nano.
+              - Vim: If you're in the vim text editor, typically:
+                - Press Esc to ensure you are in normal mode.
+                - Type :wq to write the file (save) and exit vim.
+              - Emacs: If you're in the emacs text editor, typically:
+                - Press Ctrl + X followed by Ctrl + S to save.
+                - Press Ctrl + X followed by Ctrl + C to exit Emacs.
+Step 6. Submit the "submit_3dbrain_pipeline" script
+            - In the command terminal navigate into the directory where the "submit_3dbrain_pipeline" is located by using the "cd"
+              command. - Typically within the repository that you cloned in Step 3. (ex. cd /home/pvier002/3dbrain)
+            - In the command terminal type "sbatch submit_3dbrain_pipeline"
+            - You can check the status of the script by typing "squeue -u [username]" into the command terminal. The whole process 
+              should take about ~3 hours to complete
+              Make sure to replace [username] with your FIU username
+            - You can also check out both the output and error files for each specific SLURM job submission to see the progess of 
+              the pipeline or if there are any issues with the pipeline
+            - You can check to see if the pipeline completed sucessfully by navigating to the output directory and opening the "full_stl"
+              folder. Within that folder there should be a file named "sub-[subject-id]_combined.stl" (or files depending on how many participants 
+              you ran through the pipeline at a time) with [subj-id] being the subject id that was specified in "submit_3dbrain_pipeline".
+            - If the file(s) named "sub-[subject-id]_combined.stl" are missing then check the error files to see where there was an issue
+              with the pipeline. 
+Step 7. Download the combined ".stl" file(s)
+            - Go to the HPCgui website (https://hpcgui.fiu.edu/pun/sys/dashboard/batch_connect/sessions), log-in using your FIU username
+            - Navigate to the file transfer system by clicking on "Files" then clicking on the "Home Directory" that appears on the dropdown 
+              menu. 
+            - Click on the "Change directory" button near the top of the page and navigate to the directory where the combined ".stl" files are
+              located.
+            - Select the ".stl" file(s) that you want to download and click on the "Download" button near the top of the page. 
+            - Download the selected ".stl" file(s) into a folder on the local computer.
+Step 8. Open the ".stl" file(s) using MeshLab
+            - Open the MeshLab software on the local computer
+            - Import the "sub-[subject-id]_combined.stl" file by clicking "File" -> "Import Mesh". Navigate to where the ".stl" files are located
+              and click "Open". Whatever message comes up, just click ok. - Make sure that the 3d model of the brain looks "normal" (i.e. it's one 
+              solid model and not framented or broken)
+            - Then click on "Filters" -> "Remeshing, Simplification, Reconstruction" -> "Simplification: Quadratic Edge Collapse Decimation". On 
+              the new window enter "150000" under "Target number of faces". Then click "Apply". You can close the window by clicking "Close"
+            - Then click on "Filters" -> "Smoothing, Fairing and Deformation'" -> "Laplacian Smooth" and just click "Apply" once. 
+              You can close the window by clicking "Close".
+            - Now export the brain by clicking "File" -> "Export Mesh As". Save the file as "sub-[subject-id]_combined_resamp_smooth.stl" in your 
+              desired folder - Make sure that you change the "Save as type" to "STL File Format (*.stl)". 
+Step 9. Prep the 3D printer software for printing
+            - Open the UltiMaker Cura software on the local computer
+            - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
