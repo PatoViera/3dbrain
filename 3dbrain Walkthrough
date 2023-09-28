@@ -2,8 +2,7 @@
 # The purpose of this pipeline is to have a finalized ".stl" file which can be put into a 
 # 3dprinter software (i.e. UltiMaker Cura) and print out a copy of the participant's brain. 
 
-# In order to complete the pipeline a couple of other softwares need to be downloaded into a local computer 
-# (either your own personal computer or one of the lab computers).
+# In order to complete the pipeline a couple of other softwares need to be downloaded into a local computer.
 # The software needed are: 
 #     - UltiMaker Cura: This is the 3D printer software that is needed to actually send the printing job to 
 #        the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
@@ -16,10 +15,8 @@
 #    2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then we 
 #    combine the 2 hemispheric ".stl" files into a single ".stl" (bh.stl) that represents the participants entire
 #    cortical surface.
-#    There should be no need to edit this file, however if there is an issue with the script please contact 
-#    Patricio Viera Perez (pvier002@fiu.edu)
-#  - submit_3dbrain_pipeline: This is the script that will be submitted to the SLURM scheduler. This script calls in the
-#    "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on the HPC. Thus we can run multiple
+#  - submit_3dbrain_pipeline: This is the script that will be submitted to the SLURM scheduler in FIU's HPC. This script calls in the
+#    "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on FIU's HPC. Thus we can run multiple
 #    participants at a time, making the overall processing time shorter.
 
 #################################################### 3D Brain Pipeline #############################################################################
@@ -105,7 +102,7 @@ Step 8. Open the ".stl" file(s) using MeshLab
           desired folder - Make sure that you change the "Save as type" to "STL File Format (*.stl)".
 
 ############################################################### Printing the 3D Brain ################################################################
-Step 9. Prep the 3D printer software for printing
+Step 9. Prep the 3D printer software for printing the participant's brain
           - Open the UltiMaker Cura software on the local computer
           - Import the "sub-[subject-id]_combined_resamp_smooth.stl" file by clicking "File" -> "Open File(s)". Navigate to where the ".stl" files 
           are located in your local computer and select the desired ".stl" file and click "Open".
@@ -134,13 +131,10 @@ Step 9. Prep the 3D printer software for printing
                     "Profile" -> "Fast - 0.2 mm". This will set up most of the settings that you will need. However, to ensure the best possible quality
                     within reasonable time you will need to change some settings.
                               - These are the recommended print settings to change:
-                                        - Initial Layer Height - 0.3 mm
                                         - Wall Extruder - Extruder 1 # This will also change the "Outer Wall Extruder" & "Inner Wall Extruder" settings. Do not
                                         change the settings further
                                         - Wall Thickness - 1.2 # This will also change the "Wall Line Count" setting. Do not change the setting further
                                         - Wall Ordering - Inside to Outside
-                                        - Print Thin Walls - The box should be checked
-                                        - Z seam Alignment - Sharpest Corner
                                         - Seam Corner Preference - Smart Hiding
                                         - Top Surface Skin Extruder - Extruder 1
                                         - Top Surface Skin Pattern - Concentric
@@ -157,9 +151,6 @@ Step 9. Prep the 3D printer software for printing
                                         - Enable Retraction - The box should be checked
                                         - Retraction Distance - 6.5 mm
                                         - Retraction Speed - 45.0 mm/s # This will also change the "Retraction Retract Speed" setting. Do not change the setting further
-                                        - Retraction Minimun Travel - 1.5 mm
-                                        - Maximum Retraction Count - 30
-                                        - Maximum Extrusion Distance Window - 6.0 mm
                                         - Retract Before Outer Wall - The box should be checked
                                         - Generate Supports - The box should be checked
                                         - Support Extruder - Extruder 2 # This will also change the "Support Infill Extruder", "First Layer Support Extruder", 
@@ -167,6 +158,22 @@ Step 9. Prep the 3D printer software for printing
                                         - Support Structure - Tree
                                         - Support Placement - Touching Buildplate
                                         - Support Pattern - Gyroid
+                                        - Build Plate Adhesion Type - Brim
+                                        - Build Plate Adhesion Extruder - Extruder 2 # This will also change the "Skirt/Brim Extruder", "Skirt/Brim Minimim Length", "Brim Width"
+                                        & "Brim Line Count" settings. Do not chage the settings further. 
+                                        - Brim Replaces Support - The box should be checked
+                                        - Enable Prime Tower - The box should be checked
+          - Once you have specified the necessary parameters and print settings click on the "Preview" tab near the top of the window.The participant's brain should turn grey
+          and semi translucent. Then click the "Slice" button near the bottom right of the window. It should take a couple of minutes for the slicing process to finish. You can 
+          hit the "Cancel" button at any point to cancel the slicing process if necessary. 
+          - When the slicing process is done you can scrub the bar up and down on the right side of the window to review the printing process per slice. Near the bottom right of 
+          the window the program will then tell you the total time that it will take to finish printing the participant's brain. 
+                    - It should take around 1 day 1 hour 32 minutes based on the recommended parameters
+Step 10. Save the 3D printer settings to external USB hardrive
+          - Please review all of the settings and do a visual review of how the 3D software is going to print the participant's brain. If everything looks good, then you can click 
+          the "Save to Disk" button near the bottom right of the window. Save the printer parameters to an external USB flashdrive.
+Step 11. Prep the 3D printer for printing the participant's brain
+          - 
 
 
 
