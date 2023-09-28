@@ -25,13 +25,13 @@ Step 1. Fork the 3dbrain repository on Github
 Step 2. Log in to FIU's HPC.
           - Either through the visualization node (https://hpcgui.fiu.edu/pun/sys/dashboard) or through SSH
           - Make sure to use your FIU student username (ex. pvier002)
-Step 3. Clone your forked Github repository into the HPC
+Step 3. Clone your forked Github repository into FIU's HPC
           - In the command terminal navigate to a desired directory. For example, it can be your home directory ("home/[username]")
           or a project specific directory. 
           - You can use the command "cd" to change directories within the terminal. For example, typing "cd /home/[username]" into the
-          comman terminal will take you to your home directory. Make sure to replace [username] with your FIU username
+          command terminal will take you to your home directory. Make sure to replace [username] with your FIU username
           - Once you are within your desired directory, in the command terminal type 
-          "git clone git@github.com:[GitHub_username]/3dbrain.git" replacing [username] with your GitHub account username
+          "git clone git@github.com:[Github_username]/3dbrain.git" replacing [Github_username] with your GitHub account username
           - You can check to see if the repositroy was cloned correctly if a new folder "3dbrain" was created within the desired directory, 
           navigating inside the "3dbrain" folder, then in the command terminal type "git status". It should say something like
           "# On branch master nothing to commit, working directory clean"
@@ -171,7 +171,8 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                     - It should take around 1 day 1 hour 32 minutes based on the recommended parameters
 Step 10. Save the 3D printer settings to external USB hardrive
           - Please review all of the settings and do a visual review of how the 3D software is going to print the participant's brain. If everything looks good, then you can click 
-          the "Save to Disk" button near the bottom right of the window. Save the printer parameters to an external USB flashdrive.
+          the "Save to Disk" button near the bottom right of the window. 
+          - Save the 3D print file to an external USB flashdrive. Make sure that you save the print file under a distinct name, for example "[project_name]_[participant_id]_3dbrain.gcode".
 Step 11. Prep the 3D printer for printing the participant's brain
           - 
 
