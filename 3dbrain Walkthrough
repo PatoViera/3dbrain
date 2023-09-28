@@ -1,40 +1,43 @@
-# This is a walkthrough on how to use the 3dbrain pipeline
-# The purpose of this pipeline is to have a finalized ".stl" file which can be put into a 
-# 3dprinter software (i.e. UltiMaker Cura) and print out a copy of the participant's brain. 
+# This file is inteded to be a comprehensive walkthrough on how to use the 3dbrain pipeline to generate 3D models of participants' brains from MRIs
 
 # In order to complete the pipeline a couple of other softwares need to be downloaded into a local computer.
 # The software needed are: 
-#     - UltiMaker Cura: This is the 3D printer software that is needed to actually send the printing job to 
-#        the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
+#     - UltiMaker Cura: This is a 3D printer software that is needed to set up the printing job that can then be saved and  
+#     put directly into the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
 #     - MeshLab: This software is used to simplify the 3D models of the brain so that they are suitable for
-#        3D printing. The software can be downloaded here: https://www.meshlab.net/#download
+#     3D printing. The software can be downloaded here: https://www.meshlab.net/#download
 
-# There are 2 main files that will be used in the pipeline.
-#  - run_3dbrain_pipeline: This is the script that will actually run the pipeline to take a participant's 
-#    T1 weighted image (T1w), then run the participants T1w through Freesurfer's recon-all process, convert the 
-#    2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then we 
-#    combine the 2 hemispheric ".stl" files into a single ".stl" (bh.stl) that represents the participants entire
-#    cortical surface.
-#  - submit_3dbrain_pipeline: This is the script that will be submitted to the SLURM scheduler in FIU's HPC. This script calls in the
-#    "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on FIU's HPC. Thus we can run multiple
-#    participants at a time, making the overall processing time shorter.
+# There are 2 main files that are necessary to run this pipeline.
+#     - run_3dbrain_pipeline: This is the script that will actually run the pipeline to take a participant's 
+#     T1 weighted image (T1w), then run the participant's T1w through Freesurfer's recon-all process, convert the 
+#     2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then
+#     combine the 2 hemispheric ".stl" files into a single ".stl" (bh.stl) that represents the participant's entire
+#     cortical surface.
+#     - submit_3dbrain_pipeline: This is the script that will be submitted to the SLURM scheduler on FIU's HPC. This script calls in the
+#     "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on FIU's HPC. Thus you can run multiple
+#     participants at a time, making the overall processing time shorter.
 
+#################################################### Disclaimer ###################################################################################
+# This pipeline is a modified version of the procedures from the workflow found here (https://www.instructables.com/3D-print-your-own-brain/) 
+# built to be used within FIU's HPC. 
 #################################################### 3D Brain Pipeline #############################################################################
-Step 1. Fork the 3dbrain repository on Github
-          - Go to https://github.com/PatoViera/3dbrain and make a fork of the 3dbrain repository into your own account
+Step 1. Download the necessary scripts & software
+          - To download the necessary scripts go to "https://github.com/fiuneuro/3dbrain" and download both the "run_3dbrain_pipeline" & 
+          "submit_3dbrain_pipeline" scripts - Click on each script and press the "Download Raw File". Save the script to a desired folder or directory.
+          - UltiMaker Cura - The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
+          - MeshLab - The software can be downloaded here: https://www.meshlab.net/#download
 Step 2. Log in to FIU's HPC.
-          - Either through the visualization node (https://hpcgui.fiu.edu/pun/sys/dashboard) or through SSH
-          - Make sure to use your FIU student username (ex. pvier002)
-Step 3. Clone your forked Github repository into FIU's HPC
-          - In the command terminal navigate to a desired directory. For example, it can be your home directory ("home/[username]")
-          or a project specific directory. 
-          - You can use the command "cd" to change directories within the terminal. For example, typing "cd /home/[username]" into the
-          command terminal will take you to your home directory. Make sure to replace [username] with your FIU username
-          - Once you are within your desired directory, in the command terminal type 
-          "git clone git@github.com:[Github_username]/3dbrain.git" replacing [Github_username] with your GitHub account username
-          - You can check to see if the repositroy was cloned correctly if a new folder "3dbrain" was created within the desired directory, 
-          navigating inside the "3dbrain" folder, then in the command terminal type "git status". It should say something like
-          "# On branch master nothing to commit, working directory clean"
+          - If you are not connecting from a secure campus network, you will need to be connected to the FIU network via the FIU VPN in order to access the HPC. 
+                    - For more details, see https://network.fiu.edu/vpn/.
+          - Users typically access the cluster via command-line interface. This requires a UNIX-like terminal (such as the Terminal app included with
+          MacOS) or a secure shell client (such as PuTTY or Ubuntu in Windows).
+          - To log in to hpclogin01 from a UNIX-like terminal, input the following command, where “username” is your FIU username, enter the following in terminal:
+                    - $ ssh username@hpclogin01.fiu.edu
+          - 
+          - In order to have an account created on the HPC, please e-mail hpcadmin@fiu.edu. Students must be associated with a faculty member and have their approval for joining
+          their group on the HPC.
+Step 3. Transfer the necessary scripts into FIU's HPC
+          - 
 Step 4. Load up SLRUM module 
           - On the command terminal, type in "module load slurm" This should load up the SLURM module for your current session. This
           is what will allow you to submit the script "submit_3dbrain_pipeline" to the SLURM scheduler. 
