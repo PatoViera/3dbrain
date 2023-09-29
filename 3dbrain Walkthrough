@@ -1,7 +1,7 @@
 # This file is inteded to be a comprehensive walkthrough on how to use the 3dbrain pipeline to generate 3D models of participants' brains from MRIs
 
-# In order to complete the pipeline a couple of other softwares need to be downloaded into a local computer.
-# The software needed are: 
+# In order to complete the pipeline a couple of softwares need to be downloaded into a local computer.
+# The softwares needed are: 
 #     - UltiMaker Cura: This is a 3D printer software that is needed to set up the printing job that can then be saved and  
 #     put directly into the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
 #     - MeshLab: This software is used to simplify the 3D models of the brain so that they are suitable for
@@ -20,6 +20,9 @@
 #################################################### Disclaimer ###################################################################################
 # This pipeline is a modified version of the procedures from the workflow found here (https://www.instructables.com/3D-print-your-own-brain/) 
 # built to be used within FIU's HPC. 
+# If you are unsure if you have an account for FIU's HPC please email hpcadmin@fiu.edu. Students must be associated with a faculty member and have their 
+# approval for joining their group on the HPC.
+# FIU HPC Quick Starter Guide (https://ircc.fiu.edu/wp-content/uploads/2023/09/FIU_IRCC-_HPC_QuickStart_Guide.pdf)
 #################################################### 3D Brain Pipeline #############################################################################
 Step 1. Download the necessary scripts & software
           - To download the necessary scripts go to "https://github.com/fiuneuro/3dbrain" and download both the "run_3dbrain_pipeline" & 
@@ -29,36 +32,59 @@ Step 1. Download the necessary scripts & software
 Step 2. Log in to FIU's HPC.
           - If you are not connecting from a secure campus network, you will need to be connected to the FIU network via the FIU VPN in order to access the HPC. 
                     - For more details, see https://network.fiu.edu/vpn/.
-          - Users typically access the cluster via command-line interface. This requires a UNIX-like terminal (such as the Terminal app included with
-          MacOS) or a secure shell client (such as PuTTY or Ubuntu in Windows).
-          - To log in to hpclogin01 from a UNIX-like terminal, input the following command, where “username” is your FIU username, enter the following in terminal:
-                    - $ ssh username@hpclogin01.fiu.edu
-          - 
-          - In order to have an account created on the HPC, please e-mail hpcadmin@fiu.edu. Students must be associated with a faculty member and have their approval for joining
-          their group on the HPC.
+          - Users typically access FIU's HPC via command-line interface. This requires a UNIX-like terminal (such as the Terminal app included with MacOS) or 
+          a secure shell client (such as PuTTY or Ubuntu in Windows).
+                    - To log in to hpclogin01 from a UNIX-like terminal, input the following command, where “username” is your FIU username, enter the following in terminal:
+                              - $ ssh username@hpclogin01.fiu.edu
+          - Users can also access FIU's HPC by connecting to an encrypted web portal using a web browser to initiate a remote desktop session. This option provides users the 
+          necessary tools to visualize graphical content on the HPC.
+                    - Login at the FIU Panther cluster Web portal from any modern and upto date web browser: https://hpcgui.fiu.edu - Log in using your FIU credentials
+                    - After a successful login click the “Intereactive Apps” tab on the Navigation Bar at the top of the window.
+                    - Click a “Panther Desktop” icon - A new page should appear prompting the "Number of Hours" for a session
+                    - Click on Drop down Menu on “Number of hours” or manually enter the number of hours you want your interactive session to last. - The maximum number of hours allowed is 10
+                    - Then click “Launch” icon - After a few moments the new session should start
+                    - In the new session window you can adjust the compression and image quality for your session as per your desire 
+                    - Click the "Launch Panther Desktop" icon
+                    - You will now be redirected in to a desktop view. Use the desktop session to navigate your files, open them in text editer and copy files between your folders.
 Step 3. Transfer the necessary scripts into FIU's HPC
-          - 
-Step 4. Load up SLRUM module 
-          - On the command terminal, type in "module load slurm" This should load up the SLURM module for your current session. This
-          is what will allow you to submit the script "submit_3dbrain_pipeline" to the SLURM scheduler. 
+          - File transfer to the cluster can be accomplished via a secure copy client, such as WinSCP in Windows (https://winscp.net/eng/index.php), or via the secure copy (scp) command in a UNIX-like terminal. 
+                    - To copy a file from your local disk to your home directory on the cluster using a UNIX terminal, issue the following command:
+                              - $ scp path_to_file username@hpclogin01.fiu.edu:~
+          - Using the FIU Panther cluster Web portal you can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. 
+                    - Navigate to your desired folder and click on the "Upload" button near the top of the window. 
+Step 4. Load the Slurm module in your session
+          - In order to efficiently balance the load from all of our users, the HPC utilizes a resource management system called Slurm. Slurm is a highly configurable workload manager
+          commonly used in high-performance computing (HPC) clusters. (Full documentation for slurm is available here: https://slurm.schedmd.com/documentation.html). It efficiently
+          manages and schedules jobs and tasks across a cluster of computers, helping users and administrators allocate and utilize computing resources effectively. Slurm provides a
+          command-line interface and robust job scheduling capabilities, making it an essential tool for managing large-scale computational workloads.
+                    - You can load the Slurm module by running the follwoing command on the login node:
+                              - $ module load slurm
+          - Here is a reference sheet for possible commands on the Slurm module (https://ircc.fiu.edu/download/user-guides/Slurm_Cheat_Sheet.pdf)
 Step 5. Prepare the "submit_3dbrain_pipeline" script
           - Open the "submit_3dbrain_pipeline" script either through a text editor like "Emacs Client" on the visualization node 
-          or by typing "nano" on the command line.
+          or by typing "nano" or "vim" on the command line.
           - You will need to specify a couple of things in this script based on the project that you are working on.
                     - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Path to where the error files for the script 
                     (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder
                     - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Path to where the output files for the script 
                     (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder 
-                    - WORK_DIR="${SCRATCH_DIR}/pvier002/3dbrain" # Directory within the NBC lab scratch folder that stores all temporary files from
-                    the 3dbrain pipeline. Change this to reflect your own scratch folder or a project specific scratch folder. 
-                    - DATASET="${SCRATCH_DIR}/pvier002/3dbrain/dset" # Path to where the BIDS dataset is located - folder must include 
-                    the "dataset_description.json file" - Does not have to be within the scratch folder
-                    - OUT_DIR="${SCRATCH_DIR}/pvier002/3dbrain/derivatives/freesurfer-7.1" # Path to where the output of the pipeline processes
-                    will be stored - typically a derivatives folder within a project specific directory - Does not have to be within the scratch folder
-                    - CODE_DIR="/home/pvier002/3dbrain" # Path to where a copy of "run_3dbrain_pipeline.py" & "submit_3dbrain_pipeline" will 
-                    be stored - Typically within the repository that you cloned in Step 3
+                    - source activate /home/data/nbc/tools/3dbrain/env # Path to a Python3 environment within FIU's HPC.
+                              - A guide on how to make custom Python environemnts inside FIU's HPC can be found here (https://ircc.fiu.edu/custom-environments-and-package-installation-r-and-python/)
+                              - Packages needed for this pipeline:
+                                        1. Nypipe
+                                        2. Pybids
+                                        3. argparse
+                              - If the environemt is missing a certain package you can install it by typing the following command:
+                                        - $ pip install [package] (e.g. $ pip install nypipe)
+                    - SCRATCH_DIR="/scratch/nbc" # Path to a lab/project scratch folder
+                    - WORK_DIR="/home/pvier002/3dbrain" # Directory within a lab/project scratch folder. It is meant only for storage of the temporary files created by the 3dbrain pipeline. 
+                              - Participant data should only be moved into this filesystem for processing. 
+                    - DATASET="/home/pvier002/3dbrain/dset" # Path to where the BIDS dataset is located - folder must include the "dataset_description.json file"
+                    - OUT_DIR="home/pvier002/3dbrain/derivatives/freesurfer-7.1" # Path to where the output of the pipeline processes will be stored 
+                              - Typically a derivatives folder within a project specific directory
+                    - CODE_DIR="/home/pvier002/3dbrain" # Path to where a copy of "run_3dbrain_pipeline.py" & "submit_3dbrain_pipeline" will be stored
                     - SUB_IDS="193 194" # List of participants that need to be run through the 3dbrain pipeline
-          - Once you have edited the "submit_3dbrain_pipeline" script to include the correct infromation for your project make sure
+          - Once you have edited the "submit_3dbrain_pipeline" script to include the correct information for your project make sure
           that you you saved the changes to the script. 
                     - Nano: If you're in the nano text editor, typically:
                               - Press Ctrl + O to write the file (save).
@@ -72,31 +98,29 @@ Step 5. Prepare the "submit_3dbrain_pipeline" script
                               - Press Ctrl + X followed by Ctrl + C to exit Emacs.
 Step 6. Submit the "submit_3dbrain_pipeline" script
           - In the command terminal navigate into the directory where the "submit_3dbrain_pipeline" is located by using the "cd"
-          command. - Typically within the repository that you cloned in Step 3. (ex. cd /home/pvier002/3dbrain)
-          - In the command terminal type "sbatch submit_3dbrain_pipeline"
-          - You can check the status of the script by typing "squeue -u [username]" into the command terminal. The whole process 
-          should take about ~3 hours to complete
-          Make sure to replace [username] with your FIU username
-          - You can also check out both the output and error files for each specific SLURM job submission to see the progess of 
-          the pipeline or if there are any issues with the pipeline
-          - You can check to see if the pipeline completed sucessfully by navigating to the output directory and opening the "full_stl"
-          folder. Within that folder there should be a file named "sub-[subject-id]_combined.stl" (or files depending on how many participants 
-          you ran through the pipeline at a time) with [subj-id] being the subject id that was specified in "submit_3dbrain_pipeline".
-          - If the file(s) named "sub-[subject-id]_combined.stl" are missing then check the error files to see where there was an issue
-          with the pipeline. 
+          command. 
+                    - e.g. $ cd /home/pvier002/3dbrain
+          -  To submit a job for execution on the cluster, use the sbatch command followed by the name of your submission script. 
+                    - For example:
+                              - $ sbatch submit_3dbrain_pipeline
+          - To monitor the status of your submitted jobs, utilize the squeue command with the --me flag
+                    - This will display information about your jobs only: 
+                              - $ squeue –me
+          - The whole process should take about ~3 hours to complete
+          - You can also check out both the output and error files for each specific Slurm job submission to see the progess of the pipeline or if there are any issues with the pipeline
+          - You can check to see if the pipeline completed sucessfully by navigating to the output directory and opening the "full_stl" folder. Within that folder there should be a file 
+          named "sub-[subject-id]_combined.stl" (or files depending on how many participants you ran through the pipeline at a time) with [subj-id] being the subject id that was specified in "submit_3dbrain_pipeline".
+          - If the file(s) named "sub-[subject-id]_combined.stl" are missing then check the error files to see where there was an issue with the pipeline. 
 Step 7. Download the combined ".stl" file(s)
           - Go to the HPCgui website (https://hpcgui.fiu.edu/pun/sys/dashboard/batch_connect/sessions), log-in using your FIU username
-          - Navigate to the file transfer system by clicking on "Files" then clicking on the "Home Directory" that appears on the dropdown 
-          menu. 
-          - Click on the "Change directory" button near the top of the page and navigate to the directory where the combined ".stl" files are
-          located.
+          - Navigate to the file transfer system by clicking on "Files" then clicking on the "Home Directory" that appears on the dropdown menu. 
+          - Click on the "Change directory" button near the top of the page and navigate to the directory where the combined ".stl" files are located.
           - Select the ".stl" file(s) that you want to download and click on the "Download" button near the top of the page. 
           - Download the selected ".stl" file(s) into a folder on the local computer.
 Step 8. Open the ".stl" file(s) using MeshLab
           - Open the MeshLab software on the local computer
-          - Import the "sub-[subject-id]_combined.stl" file by clicking "File" -> "Import Mesh". Navigate to where the ".stl" files are located
-          and click "Open". Whatever message comes up, just click ok. - Make sure that the 3d model of the brain looks "normal" (i.e. it's one 
-          solid model and not framented or broken)
+          - Import the "sub-[subject-id]_combined.stl" file by clicking "File" -> "Import Mesh". Navigate to where the ".stl" files are located and click "Open". 
+          Whatever message comes up, just click ok. - Make sure that the 3d model of the brain looks "normal" (i.e. it's one solid model and not framented or broken)
           - Then click on "Filters" -> "Remeshing, Simplification, Reconstruction" -> "Simplification: Quadratic Edge Collapse Decimation". On 
           the new window enter "150000" under "Target number of faces". Then click "Apply". You can close the window by clicking "Close"
           - Then click on "Filters" -> "Smoothing, Fairing and Deformation'" -> "Laplacian Smooth" and just click "Apply" once. 
