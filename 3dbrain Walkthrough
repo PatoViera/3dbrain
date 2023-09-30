@@ -134,14 +134,14 @@ Step 9. Prep the 3D printer software for printing the participant's brain
           - Import the "sub-[subject-id]_combined_resamp_smooth.stl" file by clicking "File" -> "Open File(s)". Navigate to where the ".stl" files 
           are located in your local computer and select the desired ".stl" file and click "Open".
           - You will need to specify some parameters on UltiMaker Cura to ensure that the brain prints correctly
-                    - Printer: You need to make sure that the 3D printer software knows what kind of printer you will be using. The printer that is used
-                    in the NBC lab is the UltiMaker 3.
+                    - Printer: You need to make sure that the 3D printer software knows what kind of printer you will be using. 
+                              -For this example, the printer that is used in the NBC lab is the UltiMaker 3.
                               - Specify Ultimaker 3 as the printer of choice: Click on "Settings" -> "Printer" -> "Add Printer". A new window should appear 
                               with 2 options "UltiMaker printer" & "Non UltiMaker printer". Click on "UltiMaker printer" -> "Add local printer". There should
                               be 2 drop-down menus "Add a networked printer" & "Add a non-networked printer". Click on the "Add a non-networked printer" drop 
                               down menu and select "Ultimaker B.V." -> "Ultimaker 3". Then click "Add"
-                    - Extruders: The 3D printer has 2 separate print cores that use different settings to print out different materials. Thus you need to 
-                    adjust the settings for each individual extruder to be correct. 
+                    - Extruders: In this example it is assumed that the prineter has 2 separate print cores that use different settings to print out different materials. 
+                    Thus settings need to be adjusted for each individual extruder. 
                               - Set up the settings for Extruder 1: Click on "Settings" -> "Extruder 1" -> "Print core" -> "AA 0.4". 
                               Then click on "Settings" -> "Extruder 1" -> "Material" -> "Generic" -> "PLA".
                                         - PLA is the main filament that will be used to 3D print the participant's brain. 
@@ -153,14 +153,14 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                     that any adjustment to the participant's brain size will adjust the other values accordingly to keep the same relative shape of the 
                     brain. 
                               - You can adjust the participant's brain size by changing any of the X, Y, or Z values or by changing any of the % scale values
-                              - It is recommended to use a % scale value of 67% (X: 83.9695 mm, Y:113.2604 mm, Z:71.5977 mm)
+                              - It is recommended to use a % scale value of 64% (X: 80.2097 mm, Y:108.189 mm, Z:68.3918 mm)
                     - Print Settings: These settings are what determine the overall quality of the 3D brain and how fast the print job finishes. Click on 
                     "Profile" -> "Fast - 0.2 mm". This will set up most of the settings that you will need. However, to ensure the best possible quality
                     within reasonable time you will need to change some settings.
                               - These are the recommended print settings to change:
                                         - Wall Extruder - Extruder 1 # This will also change the "Outer Wall Extruder" & "Inner Wall Extruder" settings. Do not
                                         change the settings further
-                                        - Wall Thickness - 1.2 # This will also change the "Wall Line Count" setting. Do not change the setting further
+                                        - Wall Thickness - 1.6 # This will also change the "Wall Line Count" setting. Do not change the setting further
                                         - Wall Ordering - Inside to Outside
                                         - Seam Corner Preference - Smart Hiding
                                         - Top Surface Skin Extruder - Extruder 1
@@ -171,7 +171,7 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                                         - Top/Bottom Pattern - Concentric
                                         - Bottom Pattern Initial Layer - Concentric
                                         - Infill Extruder - Extruder 1
-                                        - Infill Density - 20.0 % # This will also change the "Infill Line Distance" setting. Do not change the setting further
+                                        - Infill Density - 30.0 % # This will also change the "Infill Line Distance" setting. Do not change the setting further
                                         - Infill Pattern - Gyroid
                                         - Printing Temperature - 200.00 C # This will also change the "Printing Temperature Initial Layer", "Initial Printing Temperature",
                                         "Final Printing Temperature" settings. Do not change the settings further
@@ -195,13 +195,35 @@ Step 9. Prep the 3D printer software for printing the participant's brain
           hit the "Cancel" button at any point to cancel the slicing process if necessary. 
           - When the slicing process is done you can scrub the bar up and down on the right side of the window to review the printing process per slice. Near the bottom right of 
           the window the program will then tell you the total time that it will take to finish printing the participant's brain. 
-                    - It should take around 1 day 1 hour 32 minutes based on the recommended parameters
+                    - It should take around 21 hours and 15 minutes based on the recommended parameters
+                    - The total printing time could take longer or less depending on different specified factors such as size and quality
 Step 10. Save the 3D printer settings to external USB hardrive
           - Please review all of the settings and do a visual review of how the 3D software is going to print the participant's brain. If everything looks good, then you can click 
           the "Save to Disk" button near the bottom right of the window. 
           - Save the 3D print file to an external USB flashdrive. Make sure that you save the print file under a distinct name, for example "[project_name]_[participant_id]_3dbrain.gcode".
 Step 11. Prep the 3D printer for printing the participant's brain
-          - 
+          - Reference your 3D printer user manual on how to specify the printer's extruders correctly. 
+                    - The first extruder should be set to AA 0.4
+                    - The first extruder should be set to BB 0.8
+          - Make sure that the correct filaments are loaded on the 3D printer for each extruder. 
+                    - The PLA filament of your desired color should be loaded onto the first extruder
+                    - The PVA filament should be loaded into the second extruder
+                              - A video guide on how to set up the Ultimaker 3 printer properly (https://www.youtube.com/watch?v=iBXS_u9q5Fo&ab_channel=AdvancedGeekery)
+Step 12. Print the participant's brain
+          - In an Ultimaker 3 printer, simply insert the USB flashdrive in the front part of the printer. 
+          - Navigate the printer's menu to the "Print" section
+          - It should give you an option to print any supported file on the USB flashdrive.
+          - Select the participant's 3dbrain ".gcode" file, (e.g. [project_name]_[participant_id]_3dbrain.gcode) and select "Confirm"
+          - The 3D printer should begin to print the participant's brain.
+          - You can cancel the print at any point by selecting "Tune" -> "Abort" 
+Step 13. Finishing the print
+          - Once the print is done, carefully remove the print including the supports from the build plate. 
+          - Since this pipeline uses PVA, a water soluble material, for the support structures then you can simply submerge the print in hot water to disolve the structures. 
+          - Visually examine the participant's 3D brain for any issues or mistakes. You can use a fine grade sand paper or a small precision knife to remove any undesired imperfections
+          left on the print. 
+          - The participant's 3D brian is now ready to be presented. 
+
+# If there are any issues with the walkthrough or with the pipeline, please feel free to make a fork of the repository and do a pull request. 
 
 
 
