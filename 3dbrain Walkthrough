@@ -52,6 +52,7 @@ Step 3. Transfer the necessary scripts into FIU's HPC
                               - $ scp path_to_file username@hpclogin01.fiu.edu:~
           - Using the FIU Panther cluster Web portal you can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. 
                     - Navigate to your desired folder and click on the "Upload" button near the top of the window. 
+          - You will need to create some additional folders: /3dbrain, /3dbrain/err, /3dbrain/out
 Step 4. Load the Slurm module in your session
           - In order to efficiently balance the load from all of our users, the HPC utilizes a resource management system called Slurm. Slurm is a highly configurable workload manager
           commonly used in high-performance computing (HPC) clusters. (Full documentation for slurm is available here: https://slurm.schedmd.com/documentation.html). It efficiently
@@ -102,10 +103,10 @@ Step 6. Submit the "submit_3dbrain_pipeline" script
                     - e.g. $ cd /home/pvier002/3dbrain
           -  To submit a job for execution on the cluster, use the sbatch command followed by the name of your submission script. 
                     - For example:
-                              - $ sbatch submit_3dbrain_pipeline
+                              - $ sbatch submit_3dbrain_pipeline.txt
           - To monitor the status of your submitted jobs, utilize the squeue command with the --me flag
                     - This will display information about your jobs only: 
-                              - $ squeue –me
+                              - $ squeue –-me
           - The whole process should take about ~3 hours to complete
           - You can also check out both the output and error files for each specific Slurm job submission to see the progess of the pipeline or if there are any issues with the pipeline
           - You can check to see if the pipeline completed sucessfully by navigating to the output directory and opening the "full_stl" folder. Within that folder there should be a file 
