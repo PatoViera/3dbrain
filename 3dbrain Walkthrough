@@ -1,13 +1,14 @@
-# This file is inteded to be a comprehensive walkthrough on how to use the 3dbrain pipeline to generate 3D models of participants' brains from MRIs
+#################################################### Disclaimer ##################################################################################################################
+# This pipeline is a modified version of the procedures from the workflow found here (https://www.instructables.com/3D-print-your-own-brain/) built to be used within FIU's HPC.
+# If you are unsure if you have an account for FIU's HPC please email hpcadmin@fiu.edu. 
+# Students must be associated with a faculty member and have their approval for joining their group on the HPC.
+# FIU HPC Quick Starter Guide (https://ircc.fiu.edu/wp-content/uploads/2023/09/FIU_IRCC-_HPC_QuickStart_Guide.pdf)
+#################################################### 3D Brain Pipeline ###########################################################################################################
+# This file is inteded to be a comprehensive walkthrough on how to use the 3dbrain pipeline to generate 3D models of participants' brains from their T1-weighted image (T1w)
 
-# In order to complete the pipeline a couple of softwares need to be downloaded into a local computer.
-# The softwares needed are: 
-#     - UltiMaker Cura: This is a 3D printer software that is needed to set up the printing job that can then be saved and  
-#     put directly into the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
-#     - MeshLab: This software is used to simplify the 3D models of the brain so that they are suitable for
-#     3D printing. The software can be downloaded here: https://www.meshlab.net/#download
-
-# There are 2 main files that are necessary to run this pipeline.
+# There are several things that are needed before you can start running the pipeline
+#     - BIDS dataset: Make sure that your participant's data is stored in BIDS format. The Brain Imaging The pipeline expects the dataset to be in a BIDS format in order to search amd find all of 
+#     the relevant files. More information about BIDS and how to ensure that your dataset is in BIDS format can be found here (https://bids.neuroimaging.io/index.html)
 #     - run_3dbrain_pipeline: This is the script that will actually run the pipeline to take a participant's 
 #     T1 weighted image (T1w), then run the participant's T1w through Freesurfer's recon-all process, convert the 
 #     2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then
@@ -17,13 +18,13 @@
 #     "run_3dbrain_pipeline" script allowing it to run in parallel for each participant on FIU's HPC. Thus you can run multiple
 #     participants at a time, making the overall processing time shorter.
 
-#################################################### Disclaimer ###################################################################################
-# This pipeline is a modified version of the procedures from the workflow found here (https://www.instructables.com/3D-print-your-own-brain/) 
-# built to be used within FIU's HPC. 
-# If you are unsure if you have an account for FIU's HPC please email hpcadmin@fiu.edu. Students must be associated with a faculty member and have their 
-# approval for joining their group on the HPC.
-# FIU HPC Quick Starter Guide (https://ircc.fiu.edu/wp-content/uploads/2023/09/FIU_IRCC-_HPC_QuickStart_Guide.pdf)
-#################################################### 3D Brain Pipeline #############################################################################
+# In order to complete the pipeline a couple of softwares need to be downloaded into a local computer.
+# The softwares needed are: 
+#     - UltiMaker Cura: This is a 3D printer software that is needed to set up the printing job that can then be saved and  
+#     put directly into the 3D printer. The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
+#     - MeshLab: This software is used to simplify the 3D models of the brain so that they are suitable for
+#     3D printing. The software can be downloaded here: https://www.meshlab.net/#download
+
 Step 1. Download the necessary scripts & software
           - To download the necessary scripts go to "https://github.com/fiuneuro/3dbrain" and download both the "run_3dbrain_pipeline" & 
           "submit_3dbrain_pipeline" scripts - Click on each script and press the "Download Raw File". Save the script to a desired folder or directory.
@@ -64,7 +65,7 @@ Step 4. Load the Slurm module in your session
 Step 5. Prepare the "submit_3dbrain_pipeline" script
           - Open the "submit_3dbrain_pipeline" script either through a text editor like "Emacs Client" on the visualization node 
           or by typing "nano" or "vim" on the command line.
-          - You will need to specify a couple of things in this script based on the project that you are working on.
+          - You will need to specify several things in this script based on the project that you are working on.
                     - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Path to where the error files for the script 
                     (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder
                     - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Path to where the output files for the script 
@@ -78,8 +79,8 @@ Step 5. Prepare the "submit_3dbrain_pipeline" script
                               - If the environemt is missing a certain package you can install it by typing the following command:
                                         - $ pip install [package] (e.g. $ pip install nypipe)
                     - SCRATCH_DIR="/scratch/nbc" # Path to a lab/project scratch folder
-                    - WORK_DIR="/home/pvier002/3dbrain" # Directory within a lab/project scratch folder. It is meant only for storage of the temporary files created by the 3dbrain pipeline. 
-                              - Participant data should only be moved into this filesystem for processing. 
+                    - WORK_DIR="/home/pvier002/3dbrain" #  Path to a working directory where the temporary files made by the pipelie will be stored. - Typically within a scratch directory 
+                              - Participant data should only be moved into the scratch filesystem for processing. 
                     - DATASET="/home/pvier002/3dbrain/dset" # Path to where the BIDS dataset is located - folder must include the "dataset_description.json file"
                     - OUT_DIR="home/pvier002/3dbrain/derivatives/freesurfer-7.1" # Path to where the output of the pipeline processes will be stored 
                               - Typically a derivatives folder within a project specific directory
