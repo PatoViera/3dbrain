@@ -49,12 +49,19 @@ Step 2. Log in to FIU's HPC.
                     - Click the "Launch Panther Desktop" icon
                     - You will now be redirected in to a desktop view. Use the desktop session to navigate your files, open them in text editer and copy files between your folders.
 Step 3. Transfer the necessary scripts into FIU's HPC
-          - It is recommended that you create a new project specific folder (e.g. /home/pvier002/3dbrain) and upload the files into that folder.
-          - Using the FIU Panther cluster Web portal you can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. 
-                    - Navigate to your desired folder and click on the "Upload" button near the top of the window. 
-          - File transfer to the cluster can be accomplished via a secure copy client, such as WinSCP in Windows (https://winscp.net/eng/index.php), or via the secure copy (scp) command in a UNIX-like terminal. 
+          - Using the FIU Panther cluster Web portal 
+                    - You can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. The window should change to reflect your home directory within FIU's HPC
+                    - You can then navigate to a desired folder by clicking the "Change directory" button. Type the path to a desired folder within the window prompt.
+                    - Once you are within your desired folder, click on the "New Directory" button near the top of the window. This should prompt you to name the new directory. 
+                    - Name the new directory "3dbrain" or a related project specific name. Then click "Ok"
+                    - Navigate inside the newly created folder and click on the "Upload" button near the top of the window.
+                    - Browse your local files and select both the "run_3dbrain_pipeline" & "submit_3dbrain_pipeline" scripts.  
+          
+          - Using a UNIX-like terminal on local computer
+                    - File transfer to the cluster can be accomplished via a secure copy client, such as WinSCP in Windows (https://winscp.net/eng/index.php), or via the secure copy (scp) command in a UNIX-like terminal. 
                     - To copy a file from your local disk to your home directory on the cluster using a UNIX terminal, issue the following command:
                               - $ scp path_to_file username@hpclogin01.fiu.edu:~
+                    - Within FIU's HPC you can create a new directory 
            
 Step 4. Load the Slurm module in your session
           - In order to efficiently balance the load from all of our users, the HPC utilizes a resource management system called Slurm. Slurm is a highly configurable workload manager
@@ -68,11 +75,15 @@ Step 5. Prepare the "submit_3dbrain_pipeline" script
           - Open the "submit_3dbrain_pipeline" script either through a text editor like "Emacs Client" on the visualization node 
           or by typing "nano" or "vim" on the command line.
           - You will need to change several things in the script based on the project that you are working on.
-                    - Create an "err" folder somewhere. Typically this should be within a project specific folder
-                    - The error files for the script (submit_3dbrain_pipeline) submission will be stored in that "err" folder.
-                             - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Change this path to reflect where the "err" folder is located that you created.  
-                              
-                    - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Path to where the output files for the script 
+                    - Create an "err" folder within your project specific folder.
+                    - The error files for the script (submit_3dbrain_pipeline) submission will be stored in that "err" folder. The error files can give you insight as to the reason why the 
+                    "run_3dbrain_pipeline" was not able to run completely.
+                             - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Change this path to reflect where the "err" folder is located that you created. 
+
+                    - Create an "out" folder within your project specific folder.
+                    - The output file for the script (submit_3dbrain_pipeline) submission will be stored in that "out" folder. The output files will tell you the current process the the script
+                    "run_3dbrain_pipeline" is running. The output file will also demonstrate when the pipeline finished without errors. 
+                              - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Change this path to refelct where the "out" folder is located that you created.  
                     (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder 
                     - source activate /home/data/nbc/tools/3dbrain/env # Path to a Python3 environment within FIU's HPC.
                               - A guide on how to make custom Python environemnts inside FIU's HPC can be found here (https://ircc.fiu.edu/custom-environments-and-package-installation-r-and-python/)
