@@ -7,8 +7,9 @@
 # This file is inteded to be a comprehensive walkthrough on how to use the 3dbrain pipeline to generate 3D models of participants' brains from their T1-weighted image (T1w)
 
 # There are several things that are needed before you can start running the pipeline
-#     - BIDS dataset: Make sure that your participant's data is stored in BIDS format. The Brain Imaging The pipeline expects the dataset to be in a BIDS format in order to search amd find all of 
-#     the relevant files. More information about BIDS and how to ensure that your dataset is in BIDS format can be found here (https://bids.neuroimaging.io/index.html)
+#     - BIDS dataset: Make sure that your participant's data is stored in BIDS format. The Brain Imaging Data Structure is a simple and intuitive way to organize and describe neuroimaging 
+#     & behaviroal data. The pipeline expects the dataset to be in a BIDS format in order to search amd find all of the relevant files. 
+#          - More information about BIDS and how to ensure that your dataset is in BIDS format can be found here (https://bids.neuroimaging.io/index.html)
 #     - run_3dbrain_pipeline: This is the script that will actually run the pipeline to take a participant's 
 #     T1 weighted image (T1w), then run the participant's T1w through Freesurfer's recon-all process, convert the 
 #     2 hemispheric ".pial" files (lh.pial, rh.pial) into 2 hemispheric ".stl" files (lh.stl, rh.stl), then
@@ -48,12 +49,13 @@ Step 2. Log in to FIU's HPC.
                     - Click the "Launch Panther Desktop" icon
                     - You will now be redirected in to a desktop view. Use the desktop session to navigate your files, open them in text editer and copy files between your folders.
 Step 3. Transfer the necessary scripts into FIU's HPC
+          - It is recommended that you create a new project specific folder (e.g. /home/pvier002/3dbrain) and upload the files into that folder.
+          - Using the FIU Panther cluster Web portal you can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. 
+                    - Navigate to your desired folder and click on the "Upload" button near the top of the window. 
           - File transfer to the cluster can be accomplished via a secure copy client, such as WinSCP in Windows (https://winscp.net/eng/index.php), or via the secure copy (scp) command in a UNIX-like terminal. 
                     - To copy a file from your local disk to your home directory on the cluster using a UNIX terminal, issue the following command:
                               - $ scp path_to_file username@hpclogin01.fiu.edu:~
-          - Using the FIU Panther cluster Web portal you can navigate your files from the “Files” -> "Home Directory" tab at the top of the window. 
-                    - Navigate to your desired folder and click on the "Upload" button near the top of the window. 
-          - You will need to create some additional folders: /3dbrain, /3dbrain/err, /3dbrain/out
+           
 Step 4. Load the Slurm module in your session
           - In order to efficiently balance the load from all of our users, the HPC utilizes a resource management system called Slurm. Slurm is a highly configurable workload manager
           commonly used in high-performance computing (HPC) clusters. (Full documentation for slurm is available here: https://slurm.schedmd.com/documentation.html). It efficiently
@@ -65,9 +67,11 @@ Step 4. Load the Slurm module in your session
 Step 5. Prepare the "submit_3dbrain_pipeline" script
           - Open the "submit_3dbrain_pipeline" script either through a text editor like "Emacs Client" on the visualization node 
           or by typing "nano" or "vim" on the command line.
-          - You will need to specify several things in this script based on the project that you are working on.
-                    - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Path to where the error files for the script 
-                    (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder
+          - You will need to change several things in the script based on the project that you are working on.
+                    - Create an "err" folder somewhere. Typically this should be within a project specific folder
+                    - The error files for the script (submit_3dbrain_pipeline) submission will be stored in that "err" folder.
+                             - #SBATCH -e /home/pvier002/3dbrain/err/%x_%A-%a_e.txt # Change this path to reflect where the "err" folder is located that you created.  
+                              
                     - #SBATCH -o /home/pvier002/3dbrain/out/%x_%A-%a_o.txt # Path to where the output files for the script 
                     (submit_3dbrain_pipeline) submission will be stored. - Typically this should be within a project specific folder 
                     - source activate /home/data/nbc/tools/3dbrain/env # Path to a Python3 environment within FIU's HPC.
@@ -142,6 +146,7 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                               with 2 options "UltiMaker printer" & "Non UltiMaker printer". Click on "UltiMaker printer" -> "Add local printer". There should
                               be 2 drop-down menus "Add a networked printer" & "Add a non-networked printer". Click on the "Add a non-networked printer" drop 
                               down menu and select "Ultimaker B.V." -> "Ultimaker 3". Then click "Add"
+
                     - Extruders: In this example it is assumed that the prineter has 2 separate print cores that use different settings to print out different materials. 
                     Thus settings need to be adjusted for each individual extruder. 
                               - Set up the settings for Extruder 1: Click on "Settings" -> "Extruder 1" -> "Print core" -> "AA 0.4". 
@@ -150,26 +155,39 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                               - Set up the settings for Extruder 2: Click on "Settings" -> "Extruder 2" -> "Print core" -> "BB 0.8". 
                               Then click on "Settings" -> "Extruder 2" -> "Material" -> "Generic" -> "PVA".
                                         - PVA is a water soluble material that is used to print the support structures of the 3D printed brain.
+
+                    - Brain Location: Select the participant's brain 3D model by just clicking anywhere on the model itself. On the left side of the window
+                    click on the first option from the top "Move". Make sure that the option "Drop Down Model" is un-selected. This will allow you to adjust the height of the 3D model
+                    without issues. 
+                              - You can adjust the location of the participant's brain by changing any of the X, Y, or Z values. 
+                                        - In order for the supports for the brain to be printed correctly you need to lift the brain by at least 5 mm (X: 0 mm, Y: 0 mm, Z: 5 mm)                    
+
                     - Brain Size: Select the participant's brain 3D model by just clicking anywhere on the model itself. On the left side of the window
                     click on the second option from the top "Scale". Make sure that the option "Uniform Scaling" is selected. This option will make sure
                     that any adjustment to the participant's brain size will adjust the other values accordingly to keep the same relative shape of the 
                     brain. 
                               - You can adjust the participant's brain size by changing any of the X, Y, or Z values or by changing any of the % scale values
-                              - It is recommended to use a % scale value of 64% (X: 80.2097 mm, Y:108.189 mm, Z:68.3918 mm)
+                                        - It is recommended to use a % scale value of 30% (X: 51.0027 mm, Y:37.5136 mm, Z:30.9482 mm)
+          
                     - Print Settings: These settings are what determine the overall quality of the 3D brain and how fast the print job finishes. Click on 
                     "Profile" -> "Fast - 0.2 mm". This will set up most of the settings that you will need. However, to ensure the best possible quality
                     within reasonable time you will need to change some settings.
+                    - In order ot be able to change all the necessary print settings you will need to change the setting visibility. Click "Settings" -> "Configure setting visibility". 
+                    A new window should appear. Click on the drop down menu on the right side of the window and select "All". Then close the window.
                               - These are the recommended print settings to change:
                                         - Wall Extruder - Extruder 1 # This will also change the "Outer Wall Extruder" & "Inner Wall Extruder" settings. Do not
                                         change the settings further
-                                        - Wall Thickness - 1.6 # This will also change the "Wall Line Count" setting. Do not change the setting further
+                                        - Wall Thickness - 0.8 # This will also change the "Wall Line Count" setting. Do not change the setting further
                                         - Wall Ordering - Inside to Outside
+                                        - Z Seam Alignment - Sharpest Corner
                                         - Seam Corner Preference - Smart Hiding
                                         - Top Surface Skin Extruder - Extruder 1
+                                        - Top Surface Skin Layers - 1
                                         - Top Surface Skin Pattern - Concentric
                                         - Top/Bottom Extruder - Extruder 1
-                                        - Top/Bottom Thickness - 2.0 mm # This will change the "Top Thickness", "Top Layers", "Bottom Thickness", "Bottom Layers",
-                                        & "Initial Bottom Layers" settings. Do not change the settings further
+                                        - Top/Bottom Thickness - 2.0 mm 
+                                        - Top Layers - 3
+                                        - Bottom Layers - 5 # This will change the "Initial Bottom Layers" settings. Do not change the settings further
                                         - Top/Bottom Pattern - Concentric
                                         - Bottom Pattern Initial Layer - Concentric
                                         - Infill Extruder - Extruder 1
@@ -192,32 +210,34 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                                         & "Brim Line Count" settings. Do not chage the settings further. 
                                         - Brim Replaces Support - The box should be checked
                                         - Enable Prime Tower - The box should be checked
+
           - Once you have specified the necessary parameters and print settings click on the "Preview" tab near the top of the window.The participant's brain should turn grey
-          and semi translucent. Then click the "Slice" button near the bottom right of the window. It should take a couple of minutes for the slicing process to finish. You can 
-          hit the "Cancel" button at any point to cancel the slicing process if necessary. 
+          and semi translucent. 
+          - Then click the "Slice" button near the bottom right of the window. It should take a couple of minutes for the slicing process to finish. You can hit the "Cancel" button 
+          at any point to cancel the slicing process if necessary. 
           - When the slicing process is done you can scrub the bar up and down on the right side of the window to review the printing process per slice. Near the bottom right of 
           the window the program will then tell you the total time that it will take to finish printing the participant's brain. 
-                    - It should take around 21 hours and 15 minutes based on the recommended parameters
-                    - The total printing time could take longer or less depending on different specified factors such as size and quality
+                    - It should take around 3 hours and 22 minutes based on the recommended parameters
+                    - The total printing time could take longer or less depending on different specified factors such as size and quality 
 Step 10. Save the 3D printer settings to external USB hardrive
           - Please review all of the settings and do a visual review of how the 3D software is going to print the participant's brain. If everything looks good, then you can click 
           the "Save to Disk" button near the bottom right of the window. 
           - Save the 3D print file to an external USB flashdrive. Make sure that you save the print file under a distinct name, for example "[project_name]_[participant_id]_3dbrain.gcode".
 Step 11. Prep the 3D printer for printing the participant's brain
+          - A video guide on how to set up the Ultimaker 3 printer properly (https://www.youtube.com/watch?v=iBXS_u9q5Fo&ab_channel=AdvancedGeekery)
           - Reference your 3D printer user manual on how to specify the printer's extruders correctly. 
                     - The first extruder should be set to AA 0.4
                     - The first extruder should be set to BB 0.8
           - Make sure that the correct filaments are loaded on the 3D printer for each extruder. 
                     - The PLA filament of your desired color should be loaded onto the first extruder
                     - The PVA filament should be loaded into the second extruder
-                              - A video guide on how to set up the Ultimaker 3 printer properly (https://www.youtube.com/watch?v=iBXS_u9q5Fo&ab_channel=AdvancedGeekery)
 Step 12. Print the participant's brain
           - In an Ultimaker 3 printer, simply insert the USB flashdrive in the front part of the printer. 
           - Navigate the printer's menu to the "Print" section
           - It should give you an option to print any supported file on the USB flashdrive.
           - Select the participant's 3dbrain ".gcode" file, (e.g. [project_name]_[participant_id]_3dbrain.gcode) and select "Confirm"
           - The 3D printer should begin to print the participant's brain.
-          - You can cancel the print at any point by selecting "Tune" -> "Abort" 
+          - You can cancel the print at any point by selecting "Tune" -> "Abort this print" 
 Step 13. Finishing the print
           - Once the print is done, carefully remove the print including the supports from the build plate. 
           - Since this pipeline uses PVA, a water soluble material, for the support structures then you can simply submerge the print in hot water to disolve the structures. 
