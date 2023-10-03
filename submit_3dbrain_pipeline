@@ -31,7 +31,7 @@ pwd; hostname; date
 set -e
 
 #============================== Shell script =====================================================
-###############################
+####################################################################################################
 # Loading up the necessary environment for the python script
 # Make sure that environment has all the necessary packages installed 
 # Packages needed for this pipeline:
@@ -39,18 +39,18 @@ set -e
 #       2. Pybids
 #       3. argparse
 # If the environemt is missing a certain package you can install it using "pip install [package]" (i.e. pip install nypipe)
-source activate /home/data/nbc/tools/3dbrain/env
+source activate /home/data/nbc/tools/3dbrain/env # Path to a python environment that contains the necessary packages
 which python # Checks to make sure that we are using the correct python - Should be the one that is within the environment
 
 # Loading up the necessary modules
 module load freesurfer-7.1 # Needs to be loaded into the environment before running the script so that it can perform ReconAll, MRIsConvert & MRIsCombine
 
 #### Change CODE_DIR, DATASET, OUT_DIR, SUB_IDS & WORK_DIR as necessary for the corresponding project
-SCRATCH_DIR="/scratch/nbc" #Path to a lab/scratch folder
+SCRATCH_DIR="/scratch/nbc" # Path to a lab/scratch folder
 WORK_DIR="/scratch/nbc/pvier002/3dbrain" # Path to a working directory where the temporary files made by the pipeline will be stored. - Typically within a scratch directory
-DATASET="/home/data/nbc/Sutherland_HIVCB/dset" #Path to where the BIDS dataset is located - dset folder must include the "dataset_description.json file"
-OUT_DIR="/home/data/nbc/Sutherland_HIVCB/dset/derivatives/freesurfer-7.1" #Path to where the output of ReconAll will be stored - typically a derivatives folder
-CODE_DIR="/home/pvier002/3dbrain" #Path to where a copy of "run_3dbrain_pipeline.py" & "submit_3dbrain_pipeline.sbatch" will be stored
+DATASET="/home/data/nbc/Sutherland_HIVCB/dset" # Path to where the BIDS dataset is located - dset folder must include the "dataset_description.json file"
+OUT_DIR="/home/data/nbc/Sutherland_HIVCB/dset/derivatives/freesurfer-7.1" # Path to where the output of ReconAll will be stored - typically a derivatives folder
+CODE_DIR="/home/pvier002/3dbrain" # Path to where a copy of "run_3dbrain_pipeline.py" & "submit_3dbrain_pipeline.sbatch" will be stored
 SUB_IDS="193 194" # List of participants that need to be run through the 3dbrain pipeline
 
 ######################################
