@@ -27,8 +27,8 @@
 #     3D printing. The software can be downloaded here: https://www.meshlab.net/#download
 
 Step 1. Download the necessary scripts & software
-          - To download the necessary scripts go to "https://github.com/fiuneuro/3dbrain" and download both the "run_3dbrain_pipeline" & 
-          "submit_3dbrain_pipeline" scripts - Click on each script and press the "Download Raw File". Save the script to a desired folder or directory.
+          - To download the necessary scripts go to "https://github.com/fiuneuro/3dbrain" and download both the "run_3dbrain_pipeline" & "submit_3dbrain_pipeline" scripts click on each script 
+          and press the "Download Raw File". Save the script to a desired folder or directory.
           - UltiMaker Cura - The software can be downloaded here: https://ultimaker.com/software/ultimaker-cura/
           - MeshLab - The software can be downloaded here: https://www.meshlab.net/#download
 Step 2. Log in to FIU's HPC.
