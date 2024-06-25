@@ -178,7 +178,7 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                     that any adjustment to the participant's brain size will adjust the other values accordingly to keep the same relative shape of the 
                     brain. 
                               - You can adjust the participant's brain size by changing any of the X, Y, or Z values or by changing any of the % scale values
-                                        - It is recommended to use a % scale value of 30% (X: 51.0027 mm, Y:37.5136 mm, Z:30.9482 mm)
+                                        - It is recommended to use a % scale value of 30%.
           
                     - Print Settings: These settings are what determine the overall quality of the 3D brain and how fast the print job finishes. Click on 
                     "Profile" -> "Fast - 0.2 mm". This will set up most of the settings that you will need. However, to ensure the best possible quality
