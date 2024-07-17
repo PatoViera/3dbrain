@@ -214,7 +214,7 @@ Step 9. Prep the 3D printer software for printing the participant's brain
                                         - Support Extruder - Extruder 2 # This will also change the "Support Infill Extruder", "First Layer Support Extruder", 
                                         "Support Interface Extruder", "Support Roof Extruder", "Support Floor Extruder" settings. Do not chage the settings further
                                         - Support Structure - Normal
-                                        - Support Placement - Touching Buildplate
+                                        - Support Placement - Everywhere
                                         - Support Pattern - Gyroid
                                         - Build Plate Adhesion Type - Brim
                                         - Build Plate Adhesion Extruder - Extruder 2 # This will also change the "Skirt/Brim Extruder", "Skirt/Brim Minimim Length", "Brim Width"
